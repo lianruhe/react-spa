@@ -7,7 +7,7 @@ import _debug from 'debug'
 import config, { paths } from './config'
 
 const { __DEV__, __PROD__, __TEST__ } = config.globals
-const debug = _debug('plato:webpack')
+const debug = _debug('rrw:webpack')
 
 debug('Create configuration.')
 
@@ -20,7 +20,7 @@ const webpackConfig = {
     descriptionFiles: ['package.json'],
     mainFields: ['main', 'browser'],
     mainFiles: ['index'],
-    extensions: ['.css', '.js', '.json', '.vue'],
+    extensions: ['.css', '.js', '.json', '.jsx'],
     enforceExtension: false,
     enforceModuleExtension: false,
     alias: {

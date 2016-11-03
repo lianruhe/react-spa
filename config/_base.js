@@ -33,7 +33,6 @@ const config = {
   compiler_html_minify: false,
   compiler_public_path: '',
   compiler_vendor: [
-    'history',
     'react',
     'react-redux',
     'react-router',

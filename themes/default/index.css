@@ -1,0 +1,74 @@
+@import "reset";
+@import "helpers";
+
+#container {
+  padding: dpr(88px) 0 0;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+#progress {
+  position: fixed;
+  z-index: 100001;
+  top: 0;
+  left: 0;
+}
+
+#header {
+  position: absolute;
+  z-index: 11;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: dpr(88px);
+  background-color: color(white blackness(+5%));
+}
+
+#history {
+  & .c-link {
+    position: absolute;
+    z-index: 1;
+    width: dpr(88px);
+    height: dpr(88px);
+    line-height: dpr(88px);
+    text-align: center;
+
+    &:active {
+      background-color: transparent;
+    }
+  }
+}
+
+#logo {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+
+  & a {
+    display: block;
+    height: dpr(88px);
+    color: var(--text);
+    font-size: dpr(32px);
+    line-height: dpr(88px);
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  & sub {
+    font-size: dpr(24px);
+  }
+}
+
+#navbar {
+  & .c-reddot {
+    line-height: 1.5;
+  }
+}
+
+#content {
+  height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
