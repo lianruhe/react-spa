@@ -2,11 +2,11 @@ import webpack from 'webpack'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
+// import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
 import _debug from 'debug'
 import config, { paths } from './config'
 
-const { __DEV__, __PROD__, __TEST__ } = config.globals
+const { __DEV__, __PROD__ } = config.globals
 const debug = _debug('rrw:webpack')
 
 debug('Create configuration.')
@@ -63,7 +63,7 @@ const webpackConfig = {
       'core-js/fn/array/find',
       'core-js/fn/array/find-index',
       'core-js/fn/object/assign',
-      paths.src('index.js')],
+      paths.src('index.jsx')],
     vendor: config.compiler_vendor
   },
   output: {
@@ -75,7 +75,7 @@ const webpackConfig = {
   module: {
     rules: [
       {
-        test: /\.(js|vue)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'eslint',
         options: {
@@ -85,30 +85,13 @@ const webpackConfig = {
         enforce: 'pre'
       },
       {
-        test: /\.vue$/,
-        loader: 'vue',
-        options: {
-          loaders: {
-            css: __PROD__ ? ExtractTextPlugin.extract({
-              loader: 'css?sourceMap',
-              fallbackLoader: 'vue-style'
-            }) : 'vue-style!css?sourceMap',
-            js: 'babel'
-          }
-        }
-      },
-      {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel'
       },
       {
         test: /\.json$/,
         loader: 'json'
-      },
-      {
-        test: /\.html$/,
-        loader: 'vue-html'
       },
       {
         test: /@[1-3]x\S*\.(png|jpg|gif)(\?.*)?$/,
@@ -157,36 +140,6 @@ const webpackConfig = {
 // Plugins
 // ------------------------------------
 
-const vueLoaderOptions = {
-  postcss: pack => {
-    return [
-      require('postcss-import')({
-        path: paths.src(`themes/${config.theme}`),
-        // use webpack context
-        addDependencyTo: pack
-      }),
-      require('postcss-url')({
-        basePath: paths.src('static')
-      }),
-      require('postcss-cssnext')({
-        // see: https://github.com/ai/browserslist#queries
-        browsers: 'Android >= 4, iOS >= 7',
-        features: {
-          customProperties: {
-            variables: require(paths.src(`themes/${config.theme}/variables`))
-          }
-        }
-      }),
-      require('postcss-flexible')({
-        remUnit: 75
-      }),
-      require('postcss-browser-reporter')(),
-      require('postcss-reporter')()
-    ]
-  },
-  autoprefixer: false
-}
-
 if (__PROD__) {
   debug('Enable plugins for production (Dedupe & UglifyJS).')
   webpackConfig.plugins.push(
@@ -195,8 +148,7 @@ if (__PROD__) {
       minimize: true,
       options: {
         context: __dirname
-      },
-      vue: vueLoaderOptions
+      }
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -218,35 +170,34 @@ if (__PROD__) {
       debug: true,
       options: {
         context: __dirname
-      },
-      vue: vueLoaderOptions
+      }
     })
   )
 }
 
 // Don't split bundles during testing, since we only want import one bundle
-if (!__TEST__) {
-  webpackConfig.plugins.push(
-    new FaviconsWebpackPlugin({
-      logo: paths.src('assets/logo.svg'),
-      prefix: 'icons-[hash:7]/',
-      icons: {
-        android: true,
-        appleIcon: true,
-        appleStartup: true,
-        coast: false,
-        favicons: true,
-        firefox: false,
-        opengraph: false,
-        twitter: false,
-        yandex: false,
-        windows: false
-      }
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor']
-    })
-  )
-}
+// if (!__TEST__) {
+//   webpackConfig.plugins.push(
+//     new FaviconsWebpackPlugin({
+//       logo: paths.src('assets/logo.svg'),
+//       prefix: 'icons-[hash:7]/',
+//       icons: {
+//         android: true,
+//         appleIcon: true,
+//         appleStartup: true,
+//         coast: false,
+//         favicons: true,
+//         firefox: false,
+//         opengraph: false,
+//         twitter: false,
+//         yandex: false,
+//         windows: false
+//       }
+//     }),
+//     new webpack.optimize.CommonsChunkPlugin({
+//       names: ['vendor']
+//     })
+//   )
+// }
 
 export default webpackConfig
