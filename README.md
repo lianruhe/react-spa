@@ -25,3 +25,6 @@ npm run docs
 # push modifications to github
 npm run push
 ```
+
+# MIT
+...
