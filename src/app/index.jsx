@@ -1,63 +1,47 @@
 import React, { Component, PropTypes } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import { browserHistory, Router, Route, IndexRoute } from 'react-router'
+import { Provider } from 'react-redux'
 
-import Header from 'components/Header'
-import Grid from 'components/Grid'
-import TransactionForm from './TransactionForm'
-import TransactionSummary from './TransactionSummary'
-import * as AppActions from 'actions'
-// import './style.css'
+// ========================================================
+// initial routes
+// ========================================================
+const walkRoutes = sets =>
+  Object.keys(sets).map(path => {
+    const value = sets[path]
 
-class App extends Component {
+    return (
+      <Route key={path} path={path} component={value.component}>
+        { value.indexroute &&
+          <IndexRoute component={value.indexroute} /> }
+        { value.childroutes &&
+          walkRoutes(value.childroutes) }
+      </Route>
+    )
+  })
+
+class AppContainer extends Component {
   static propTypes = {
-    transactions: PropTypes.array,
-    summary: PropTypes.object,
-    gridFields: PropTypes.array,
-    actions: PropTypes.object
+    routes: PropTypes.object.isRequired,
+    store: PropTypes.object.isRequired
   }
 
-  componentWillMount () {
-    const { transactions, actions } = this.props
-    actions.requestSum(transactions)
+  shouldComponentUpdate () {
+    return false
   }
 
   render () {
-    const {
-      transactions,
-      gridFields,
-      summary,
-      actions
-    } = this.props
+    const { routes, store } = this.props
 
     return (
-      <div className="viewport">
-        <Header addTodo={actions.addTodo} />
-        <Grid fields={gridFields} data={transactions}>
-          <TransactionForm action={actions.addTransaction} />
-          <TransactionSummary data={summary} fields={gridFields} />
-        </Grid>
-      </div>
+      <Provider store={store}>
+        <div style={{ height: '100%' }}>
+          <Router history={browserHistory}>
+            { walkRoutes(routes) }
+          </Router>
+        </div>
+      </Provider>
     )
   }
 }
 
-function mapStateToProps (state) {
-  const { transactions } = state
-  return {
-    transactions: transactions.transactions,
-    summary: transactions.summary,
-    gridFields: transactions.transactionsGrid
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    actions: bindActionCreators(AppActions, dispatch)
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App)
+export default AppContainer

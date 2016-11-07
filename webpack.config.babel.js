@@ -32,7 +32,7 @@ const webpackConfig = {
     descriptionFiles: ['package.json'],
     mainFields: ['main'],
     mainFiles: ['index'],
-    extensions: ['.js'],
+    extensions: ['.js', '.jsx'],
     enforceExtension: false,
     enforceModuleExtension: false,
     moduleExtensions: ['-loader']
