@@ -5,18 +5,14 @@ export default {
     title: '首页',
     component: require('app/home/index'),
     childroutes: {
-      // login: {
-      //   title: '登录',
-      //   component: 'login/index'
-      // },
-      // logout: {
-      //   title: '退出',
-      //   component: 'logout/index'
-      // },
+      login: {
+        title: '登录',
+        component: require('app/login/index')
+      },
       // // ...users,
-      // '*': {
-      //   component: 'error/index'
-      // }
+      '*': {
+        component: require('app/404/index')
+      }
     }
   }
 }

@@ -3,20 +3,16 @@ import React, {
   /* , PropTypes */
 } from 'react'
 
-export default class Home extends Component {
+export default class Login extends Component {
 
   // static propTypes = {
   //   children: PropTypes.element
   // };
-  //
-  componentWillMount () {
-    
-  }
 
   render () {
     return (
-      <div style="height:100%;width:100%;background-color: red;">
-        this is a home page!
+      <div>
+        this is a login page!
       </div>
     )
   }
