@@ -9,13 +9,11 @@ export default class Home extends Component {
   //   children: PropTypes.element
   // };
   //
-  componentWillMount () {
-    
-  }
+  componentWillMount () {}
 
   render () {
     return (
-      <div style="height:100%;width:100%;background-color: red;">
+      <div style={{height: '100%', width: '100%', backgroundColor: 'red'}}>
         this is a home page!
       </div>
     )

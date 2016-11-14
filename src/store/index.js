@@ -17,7 +17,7 @@ export default (initialState = {}) => {
   // ======================================================
   // Store Enhancers
   // ======================================================
-  const enhancers = [persistState([env, tokens, auth])]
+  const enhancers = [persistState(['env', 'tokens', 'auth'])]
 
   if (__DEV__) {
     const devToolsExtension = window.devToolsExtension
