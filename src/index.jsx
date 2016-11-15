@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { hashHistory, Router } from 'react-router'
+import { Provider } from 'react-redux'
 import createStore from './store'
-import AppContainer from './app'
+// import AppContainer from './app'
 
 // ========================================================
 // Store Instantiation
@@ -13,11 +15,29 @@ const store = createStore(initialState)
 // Render Setup
 // ========================================================
 const MOUNT_NODE = document.getElementById('app')
+// initial routes
+// const walkRoutes = sets =>
+//   Object.keys(sets).map(path => {
+//     const value = sets[path]
+//
+//     return (
+//       <Route key={path} path={path} component={asyncLoader(value.component)}>
+//         { value.indexroute &&
+//           <IndexRoute component={asyncLoader(value.indexroute)} /> }
+//         { value.childroutes &&
+//           walkRoutes(value.childroutes) }
+//       </Route>
+//     )
+//   })
 
 let render = () => {
   const routes = require('./routes')
   ReactDOM.render(
-    <AppContainer store={store} routes={routes} />,
+    <Provider store={store}>
+      <div style={{ height: '100%' }}>
+        <Router history={ hashHistory } children={ routes } />
+      </div>
+    </Provider>,
     MOUNT_NODE
   )
 }

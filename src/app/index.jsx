@@ -1,47 +1,17 @@
 import React, { Component, PropTypes } from 'react'
-import { browserHistory, Router, Route, IndexRoute } from 'react-router'
-import { Provider } from 'react-redux'
 
-// ========================================================
-// initial routes
-// ========================================================
-const walkRoutes = sets =>
-  Object.keys(sets).map(path => {
-    const value = sets[path]
+export default class App extends Component {
 
-    return (
-      <Route key={path} path={path} component={value.component}>
-        { value.indexroute &&
-          <IndexRoute component={value.indexroute} /> }
-        { value.childroutes &&
-          walkRoutes(value.childroutes) }
-      </Route>
-    )
-  })
-
-class AppContainer extends Component {
   static propTypes = {
-    routes: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired
-  }
-
-  shouldComponentUpdate () {
-    return false
+    children: PropTypes.element
   }
 
   render () {
-    const { routes, store } = this.props
-
     return (
-      <Provider store={store}>
-        <div style={{ height: '100%' }}>
-          <Router history={browserHistory}>
-            { walkRoutes(routes) }
-          </Router>
-        </div>
-      </Provider>
+      <div>
+        {this.props.children}
+      </div>
     )
   }
-}
 
-export default AppContainer
+}
