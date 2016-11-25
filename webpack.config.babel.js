@@ -20,7 +20,7 @@ const webpackConfig = {
     descriptionFiles: ['package.json'],
     mainFields: ['main', 'browser'],
     mainFiles: ['index'],
-    extensions: ['.css', '.js', '.json', '.jsx'],
+    extensions: ['.js', '.jsx', '.json', '.css'],
     enforceExtension: false,
     enforceModuleExtension: false,
     alias: {
@@ -51,7 +51,12 @@ const webpackConfig = {
     // },
     compress: true,
     hot: true,
-    noInfo: true
+    noInfo: false,
+    stats: {
+      chunks : false,
+      chunkModules : false,
+      colors: true
+    }
   },
   entry: {
     app: [
@@ -88,6 +93,14 @@ const webpackConfig = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel'
+      },
+      {
+        test: /\.css$/,
+        loaders: [
+          'style-loader',
+          'css-loader?modules&importLoaders=1',
+          'postcss-loader'
+        ]
       },
       {
         test: /\.json$/,

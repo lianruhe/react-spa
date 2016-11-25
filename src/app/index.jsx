@@ -1,10 +1,27 @@
-import React, { Component, PropTypes } from 'react'
+// import React from 'react'
+//
+// export const App = props => (
+//   <div>
+//     {props.children}
+//   </div>
+// )
+//
+// App.propTypes = {
+//   children: React.PropTypes.element
+// }
+//
+// export default App
+
+import React, {
+  Component
+  /* , PropTypes */
+} from 'react'
 
 export default class App extends Component {
 
   static propTypes = {
-    children: PropTypes.element
-  }
+    children: React.PropTypes.element
+  };
 
   render () {
     return (
@@ -13,5 +30,4 @@ export default class App extends Component {
       </div>
     )
   }
-
 }
