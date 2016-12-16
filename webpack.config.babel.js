@@ -177,6 +177,7 @@ if (__PROD__) {
 } else {
   debug('Enable plugins for live development (HMR, NoErrors).')
   webpackConfig.plugins.push(
+    new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.LoaderOptionsPlugin({

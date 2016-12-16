@@ -6,7 +6,7 @@
   "main": "src/index.js",
   "scripts": {
     "gfw": "npm i cross-env && cross-env CHROMEDRIVER_CDNURL=http://npm.taobao.org/mirrors/chromedriver PHANTOMJS_CDNURL=http://npm.taobao.org/mirrors/phantomjs npm install -r https://registry.npm.taobao.org",
-    "dev": "cross-env NODE_ENV=development DEBUG=rrw* webpack-dev-server --progress",
+    "dev": "cross-env NODE_ENV=development DEBUG=rrw* nodemon --exec webpack-dev-server --progress",
     "e2e": "cross-env NODE_ENV=test DEBUG=rrw* node ./test/e2e/runner.js --env firefox",
     "e2e:dev": "cross-env NODE_ENV=test DEBUG=rrw* nodemon ./test/e2e/runner.js",
     "unit": "cross-env NODE_ENV=test DEBUG=rrw* karma start ./test/unit/runner.js",
