@@ -31,7 +31,7 @@ const config = {
   compiler_devtool: 'source-map',
   compiler_hash_type: 'hash',
   compiler_html_minify: false,
-  compiler_public_path: '',
+  compiler_public_path: '/',
   compiler_vendor: [
     'react',
     'react-redux',

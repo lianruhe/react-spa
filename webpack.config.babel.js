@@ -53,22 +53,15 @@ const webpackConfig = {
     hot: true,
     noInfo: false,
     stats: {
-      chunks : false,
-      chunkModules : false,
+      chunks: false,
+      chunkModules: false,
       colors: true
     }
   },
   entry: {
     app: [
-      // override native Promise
-      'nuo',
-      // to reduce built file size,
-      // we load the specific polyfills with core-js
-      // instead of the all-in-one babel-polyfill.
-      'core-js/fn/array/find',
-      'core-js/fn/array/find-index',
-      'core-js/fn/object/assign',
-      paths.src('index.jsx')],
+      paths.src('index.jsx'),
+      `webpack-hot-middleware/client?path=${config.compiler_public_path}__webpack_hmr`],
     vendor: config.compiler_vendor
   },
   output: {
@@ -96,10 +89,28 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        loaders: [
+        use: [
           'style-loader',
-          'css-loader?modules&importLoaders=1',
-          'postcss-loader'
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: function () {
+                return [
+                  require('precss'),
+                  require('postcss-cssnext'),
+                  require('postcss-import'),
+                  require('postcss-url')
+                ]
+              }
+            }
+          }
         ]
       },
       {
@@ -179,7 +190,7 @@ if (__PROD__) {
   webpackConfig.plugins.push(
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.LoaderOptionsPlugin({
       debug: true,
       options: {

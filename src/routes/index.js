@@ -2,18 +2,18 @@
 
 export default {
   path: '/',
-  component: require('app/index'),
+  getComponent: () => System.import('app/index'),
   indexRoute: {
-    component: require('app/home/index')
+    getComponent: () => System.import('app/home/index')
   },
   childRoutes: [{
     path: 'home',
-    component: require('app/home/index')
+    getComponent: () => System.import('app/home/index')
   }, {
     path: 'login',
-    component: require('app/login/index')
+    getComponent: () => System.import('app/login/index')
   }, {
     path: '*',
-    component: require('app/404/index')
+    getComponent: () => System.import('app/404/index')
   }]
 }
