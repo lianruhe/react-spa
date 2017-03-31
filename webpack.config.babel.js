@@ -60,8 +60,11 @@ const webpackConfig = {
   },
   entry: {
     app: [
-      paths.src('index.jsx'),
-      `webpack-hot-middleware/client?path=${config.compiler_public_path}__webpack_hmr`],
+      'react-hot-loader/patch',
+      'webpack-dev-server/client?http://localhost:3000',
+      'webpack/hot/only-dev-server',
+      paths.src('index.jsx')
+    ],
     vendor: config.compiler_vendor
   },
   output: {
@@ -85,7 +88,7 @@ const webpackConfig = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        loader: 'babel-loader'
       },
       {
         test: /\.css$/,

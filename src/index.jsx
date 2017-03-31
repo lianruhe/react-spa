@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { hashHistory, Router } from 'react-router'
 import { Provider } from 'react-redux'
 import createStore from './store'
+import { AppContainer } from 'react-hot-loader'
 // import AppContainer from './app'
 
 // ========================================================
@@ -35,7 +36,9 @@ let render = () => {
   ReactDOM.render(
     <Provider store={store}>
       <div style={{ height: '100%' }}>
-        <Router history={ hashHistory } children={ routes } />
+        <AppContainer>
+          <Router history={ hashHistory } children={ routes } />
+        </AppContainer>
       </div>
     </Provider>,
     MOUNT_NODE
@@ -72,12 +75,9 @@ if (__DEV__) {
     }
 
     // Setup hot module replacement
-    module.hot.accept('./routes/index', () =>
-      setImmediate(() => {
-        ReactDOM.unmountComponentAtNode(MOUNT_NODE)
-        render()
-      })
-    )
+    module.hot.accept('app', () => {
+      render()
+    })
   }
 }
 
