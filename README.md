@@ -5,7 +5,7 @@
 
 ```bash
 # install dependencies
-npm install
+npm run gfw
 
 # serve with hot reload at localhost:3000
 npm run dev
@@ -26,5 +26,6 @@ npm run docs
 npm run push
 ```
 
-# MIT
-...
+## License
+
+MIT

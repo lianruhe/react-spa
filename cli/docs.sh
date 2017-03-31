@@ -12,7 +12,7 @@ cd dist
 git init
 git add -A
 git commit -m "$MESSAGE"
-git push -f https://github.com/crossjs/plato.git master:gh-pages
+git push -f https://github.com/lianruhe/react-redux-webpack.git master:gh-pages
 
 # back to root
 cd ..

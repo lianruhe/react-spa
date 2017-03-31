@@ -3,7 +3,7 @@ import Icon from 'components/Icon/index.jsx'
 
 const Error = () => (
   <div>
-    <div><Icon type="tools" />403</div>
+    <div><Icon type="tools" />401</div>
     <div>
       <button>返回</button>
       <button>首页</button>
