@@ -12,6 +12,14 @@ const debug = _debug('rrw:webpack')
 debug('Create configuration.')
 
 // https://webpack.js.org/how-to/upgrade-from-webpack-1/
+const appEntry = [paths.src('index.jsx')]
+if (__DEV__) {
+  appEntry.unshift(
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://localhost:3000',
+    'webpack/hot/only-dev-server'
+  )
+}
 
 const webpackConfig = {
   target: 'web',
@@ -59,12 +67,7 @@ const webpackConfig = {
     }
   },
   entry: {
-    app: [
-      'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:3000',
-      'webpack/hot/only-dev-server',
-      paths.src('index.jsx')
-    ],
+    app: appEntry,
     vendor: config.compiler_vendor
   },
   output: {
@@ -170,7 +173,6 @@ const webpackConfig = {
 if (__PROD__) {
   debug('Enable plugins for production (Dedupe & UglifyJS).')
   webpackConfig.plugins.push(
-    new webpack.optimize.DedupePlugin(),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       options: {

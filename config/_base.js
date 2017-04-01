@@ -36,9 +36,8 @@ const config = {
     'react',
     'react-redux',
     'react-router',
-    'redux',
-    'redux-actions',
-    'react-router-redux'
+    'react-dom',
+    'redux'
   ]
 }
 

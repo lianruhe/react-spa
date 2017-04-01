@@ -4,7 +4,6 @@ import { hashHistory, Router } from 'react-router'
 import { Provider } from 'react-redux'
 import createStore from './store'
 import { AppContainer } from 'react-hot-loader'
-// import AppContainer from './app'
 
 // ========================================================
 // Store Instantiation
@@ -34,13 +33,13 @@ const MOUNT_NODE = document.getElementById('app')
 let render = () => {
   const routes = require('./routes')
   ReactDOM.render(
-    <Provider store={store}>
-      <div style={{ height: '100%' }}>
-        <AppContainer>
+    <AppContainer>
+      <Provider store={store}>
+        <div style={{ height: '100%' }}>
           <Router history={ hashHistory } children={ routes } />
-        </AppContainer>
-      </div>
-    </Provider>,
+        </div>
+      </Provider>
+    </AppContainer>,
     MOUNT_NODE
   )
 }
@@ -60,7 +59,7 @@ if (__DEV__) {
     // Development render functions
     const renderApp = render
     const renderError = (error) => {
-      const RedBox = require('redbox-react').default
+      const RedBox = require('redbox-react')
 
       ReactDOM.render(<RedBox error={error} />, MOUNT_NODE)
     }
