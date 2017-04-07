@@ -2,11 +2,11 @@ import webpack from 'webpack'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
-// import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
+import FaviconsWebpackPlugin from 'favicons-webpack-plugin'
 import _debug from 'debug'
 import config, { paths } from './config'
 
-const { __DEV__, __PROD__ } = config.globals
+const { __DEV__, __PROD__, __TEST__ } = config.globals
 const debug = _debug('rrw:webpack')
 
 debug('Create configuration.')
@@ -206,28 +206,29 @@ if (__PROD__) {
 }
 
 // Don't split bundles during testing, since we only want import one bundle
-// if (!__TEST__) {
-//   webpackConfig.plugins.push(
-//     new FaviconsWebpackPlugin({
-//       logo: paths.src('assets/logo.svg'),
-//       prefix: 'icons-[hash:7]/',
-//       icons: {
-//         android: true,
-//         appleIcon: true,
-//         appleStartup: true,
-//         coast: false,
-//         favicons: true,
-//         firefox: false,
-//         opengraph: false,
-//         twitter: false,
-//         yandex: false,
-//         windows: false
-//       }
-//     }),
-//     new webpack.optimize.CommonsChunkPlugin({
-//       names: ['vendor']
-//     })
-//   )
-// }
+if (!__TEST__) {
+  webpackConfig.plugins.push(
+    new FaviconsWebpackPlugin({
+      logo: paths.src('static/favicon.png'),
+      prefix: 'icons-[hash:7]/',
+      persistentCache: true,
+      icons: {
+        android: false,
+        appleIcon: false,
+        appleStartup: false,
+        coast: false,
+        favicons: true,
+        firefox: false,
+        opengraph: false,
+        twitter: false,
+        yandex: false,
+        windows: false
+      }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor']
+    })
+  )
+}
 
 export default webpackConfig
