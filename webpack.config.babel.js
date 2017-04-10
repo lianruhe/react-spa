@@ -42,8 +42,7 @@ const webpackConfig = {
     mainFiles: ['index'],
     extensions: ['.js', '.jsx'],
     enforceExtension: false,
-    enforceModuleExtension: false,
-    moduleExtensions: ['-loader']
+    enforceModuleExtension: false
   },
   node: {
     fs: 'empty',
@@ -81,7 +80,7 @@ const webpackConfig = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'eslint',
+        loader: 'eslint-loader',
         options: {
           emitWarning: __DEV__,
           formatter: require('eslint-friendly-formatter')
@@ -119,13 +118,13 @@ const webpackConfig = {
           }
         ]
       },
-      {
-        test: /\.json$/,
-        loader: 'json'
-      },
+      // {
+      //   test: /\.json$/,
+      //   loader: 'json-loader'
+      // },
       {
         test: /@[1-3]x\S*\.(png|jpg|gif)(\?.*)?$/,
-        loader: 'file',
+        loader: 'file-loader',
         options: {
           name: '[name].[ext]?[hash:7]'
         }
@@ -134,7 +133,7 @@ const webpackConfig = {
         test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
         // do NOT base64encode @1x/@2x/@3x images
         exclude: /@[1-3]x/,
-        loader: 'url',
+        loader: 'url-loader',
         options: {
           limit: 10000,
           name: '[name].[ext]?[hash:7]'
