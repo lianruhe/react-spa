@@ -1,7 +1,8 @@
 import React, {
   Component
-  /* , PropTypes */
 } from 'react'
+import LoginForm from './form'
+import 'styles/app/login.css'
 
 export default class Login extends Component {
 
@@ -11,8 +12,8 @@ export default class Login extends Component {
 
   render () {
     return (
-      <div>
-        this is a login page!
+      <div className="ui-login">
+        <LoginForm />
       </div>
     )
   }
