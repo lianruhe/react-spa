@@ -108,10 +108,18 @@ const webpackConfig = {
             options: {
               plugins: function () {
                 return [
-                  require('precss'),
-                  require('postcss-cssnext'),
                   require('postcss-import'),
-                  require('postcss-url')
+                  // require('precss'),
+                  require('postcss-cssnext')({
+                    features: {
+                      customProperties: {
+                        variables: require(paths.src(`themes/${config.theme}/variables`))
+                      }
+                    }
+                  }),
+                  require('postcss-url'),
+                  require('postcss-browser-reporter'),
+                  require('postcss-reporter')
                 ]
               }
             }

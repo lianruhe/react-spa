@@ -1,10 +1,14 @@
 .ui-login {
   & .login-form {
     max-width: 300px;
-    margin: 100px auto;
+    margin: 150px auto;
   }
-}
-.login-form {
-  max-width: 300px;
-  margin: 150px auto;
+
+  & .login-form-forgot {
+    float: right;
+  }
+
+  & .login-form-button {
+    width: 100%;
+  }
 }
