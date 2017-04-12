@@ -1,18 +1,18 @@
-
+// react routers
 export default {
   path: '/',
-  getComponent: () => System.import('app/index'),
+  getComponent: () => System.import('app'),
   indexRoute: {
-    getComponent: () => System.import('app/home/index')
+    getComponent: () => System.import('app/home')
   },
   childRoutes: [{
     path: 'home',
-    getComponent: () => System.import('app/home/index')
+    getComponent: () => System.import('app/home')
   }, {
     path: 'login',
-    getComponent: () => System.import('app/login/index')
+    getComponent: () => System.import('app/login')
   }, {
     path: '*',
-    getComponent: () => System.import('app/404/index')
+    getComponent: () => System.import('app/404')
   }]
 }

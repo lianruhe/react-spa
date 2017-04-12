@@ -11,7 +11,6 @@ const debug = _debug('rrw:webpack')
 
 debug('Create configuration.')
 
-// https://webpack.js.org/how-to/upgrade-from-webpack-1/
 const appEntry = [paths.src('index.jsx')]
 if (__DEV__) {
   appEntry.unshift(

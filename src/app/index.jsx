@@ -1,5 +1,5 @@
 import React from 'react'
-import 'styles/index'
+import 'antd/lib/style/index.css'
 
 const App = props => (
   <div>
