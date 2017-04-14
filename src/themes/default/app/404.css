@@ -1,5 +1,13 @@
 .ui-notfound {
-  & .header {
-    height: 300px;
+
+
+  & .logo {
+    width: 500px;
+    height: 500px;
+    background: url(/404.png) no-repeat right center;
+  }
+
+  & .content-wrapper {
+
   }
 }

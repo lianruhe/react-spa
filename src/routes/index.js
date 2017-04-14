@@ -1,10 +1,15 @@
 // redirect route
 const checkAuth = (nextState, replace, next) => {
-  console.log(nextState)
-  const auth = false // getStorage('tokenInfo')
-  if (nextState.location.pathname !== '/login' && !auth) {
-    replace('/login')
+  const auth = true // getStorage('tokenInfo')
+  if (!auth) {
+    replace({
+      pathname: '/login',
+      query: {
+        redirect: nextState.location.pathname
+      }
+    })
   }
+
   next()
 }
 
