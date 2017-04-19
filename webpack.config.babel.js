@@ -15,7 +15,7 @@ const appEntry = [paths.src('index.jsx')]
 if (__DEV__) {
   appEntry.unshift(
     'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:3000',
+    `webpack-dev-server/client?http://localhost:${config.server_port}`,
     'webpack/hot/only-dev-server'
   )
 }
@@ -108,11 +108,12 @@ const webpackConfig = {
               plugins: function () {
                 return [
                   require('postcss-import'),
-                  require('postcss-url')({
-                    url: 'copy',
-                    assetsPath: 'images',
-                    basePath: paths.src('static')
-                  }),
+                  // require('postcss-url')({
+                  //   url: 'copy',
+                  //   assetsPath: 'img',
+                  //   useHash: true,
+                  //   basePath: paths.src('static')
+                  // }),
                   // require('precss'),
                   require('postcss-cssnext')({
                     features: {
