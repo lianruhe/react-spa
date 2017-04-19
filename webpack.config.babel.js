@@ -93,44 +93,41 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          // resolve-url-loader may be chained before sass-loader if necessary
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-                sourceMap: true
-              }
-            },
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: function () {
-                  return [
-                    require('postcss-import'),
-                    // require('precss'),
-                    require('postcss-cssnext')({
-                      features: {
-                        customProperties: {
-                          variables: require(paths.src(`themes/${config.theme}/variables`))
-                        }
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: function () {
+                return [
+                  require('postcss-import'),
+                  require('postcss-url')({
+                    url: 'copy',
+                    assetsPath: 'images',
+                    basePath: paths.src('static')
+                  }),
+                  // require('precss'),
+                  require('postcss-cssnext')({
+                    features: {
+                      customProperties: {
+                        variables: require(paths.src(`themes/${config.theme}/variables`))
                       }
-                    }),
-                    require('postcss-url')({
-                      // url: 'inline',
-                      // assetsPath: 'images',
-                      basePath: paths.src('static')
-                    }),
-                    require('postcss-browser-reporter'),
-                    require('postcss-reporter')
-                  ]
-                }
+                    }
+                  }),
+                  require('postcss-browser-reporter'),
+                  require('postcss-reporter')
+                ]
               }
             }
-          ]
-        })
+          }
+        ]
       },
       {
         test: /@[1-3]x\S*\.(png|jpg|gif)(\?.*)?$/,
@@ -197,7 +194,7 @@ if (__PROD__) {
       sourceMap: true
     }),
     // extract css into its own file
-    // new ExtractTextPlugin('[name].[contenthash].css')
+    new ExtractTextPlugin('[name].[contenthash].css')
   )
 } else {
   debug('Enable plugins for live development (HMR, NoErrors).')
@@ -238,7 +235,7 @@ if (!__TEST__) {
       names: ['vendor']
     }),
     // extract css into its own file
-    new ExtractTextPlugin('[name].[contenthash].css')
+    // new ExtractTextPlugin('[name].[contenthash].css')
   )
 }
 
