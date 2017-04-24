@@ -108,8 +108,9 @@ const webpackConfig = {
               plugins: function () {
                 return [
                   require('postcss-import'),
+                  require('postcss-url'),
                   // require('postcss-url')({
-                  //   url: 'copy',
+                  //   url: 'rebase',
                   //   assetsPath: 'img',
                   //   useHash: true,
                   //   basePath: paths.src('static')
@@ -131,16 +132,16 @@ const webpackConfig = {
         ]
       },
       {
-        test: /@[1-3]x\S*\.(png|jpg|gif)(\?.*)?$/,
+        test: /\.(png|jpg|gif)(\?.*)?$/,
         loader: 'file-loader',
         options: {
+          useRelativePath: __PROD__,
           name: '[name].[ext]?[hash:7]'
         }
       },
       {
         test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
-        // do NOT base64encode @1x/@2x/@3x images
-        exclude: /@[1-3]x/,
+        // exclude: /@[1-3]x/, // skip encoding @1x/@2x/@3x images with base64
         loader: 'url-loader',
         options: {
           limit: 10000,
