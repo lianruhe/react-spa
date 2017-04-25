@@ -4,7 +4,6 @@ import React, {
 } from 'react'
 
 export default class Home extends Component {
-
   // static propTypes = {
   //   children: PropTypes.element
   // };

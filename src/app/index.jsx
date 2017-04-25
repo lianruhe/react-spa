@@ -20,7 +20,6 @@ import React, {
 import PropTypes from 'prop-types'
 
 export default class App extends Component {
-
   static propTypes = {
     children: PropTypes.element
   };

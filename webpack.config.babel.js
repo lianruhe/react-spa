@@ -15,7 +15,7 @@ const appEntry = [paths.src('index.jsx')]
 if (__DEV__) {
   appEntry.unshift(
     'react-hot-loader/patch',
-    `webpack-dev-server/client?http://localhost:${config.server_port}`,
+    // `webpack-dev-server/client?http://localhost:${config.server_port}`,
     'webpack/hot/only-dev-server'
   )
 }
@@ -98,6 +98,7 @@ const webpackConfig = {
           {
             loader: 'css-loader',
             options: {
+              // root: paths.src(`themes/${config.theme}`),
               importLoaders: 1,
               sourceMap: true
             }
@@ -107,14 +108,10 @@ const webpackConfig = {
             options: {
               plugins: function () {
                 return [
-                  require('postcss-import'),
-                  require('postcss-url'),
-                  // require('postcss-url')({
-                  //   url: 'rebase',
-                  //   assetsPath: 'img',
-                  //   useHash: true,
-                  //   basePath: paths.src('static')
-                  // }),
+                  require('postcss-import')({
+                    path: paths.src(`themes/${config.theme}`)
+                  }),
+                  require('postcss-url')(),
                   // require('precss'),
                   require('postcss-cssnext')({
                     features: {
@@ -131,14 +128,13 @@ const webpackConfig = {
           }
         ]
       },
-      {
-        test: /\.(png|jpg|gif)(\?.*)?$/,
-        loader: 'file-loader',
-        options: {
-          useRelativePath: __PROD__,
-          name: '[name].[ext]?[hash:7]'
-        }
-      },
+      // {
+      //   test: /\.(png|jpg|gif)(\?.*)?$/,
+      //   loader: 'file-loader',
+      //   options: {
+      //     name: '[name].[ext]?[hash:7]'
+      //   }
+      // },
       {
         test: /\.(png|jpg|gif|svg|woff2?|eot|ttf)(\?.*)?$/,
         // exclude: /@[1-3]x/, // skip encoding @1x/@2x/@3x images with base64
