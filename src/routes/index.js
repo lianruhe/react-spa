@@ -1,17 +1,17 @@
 // redirect route
-const checkAuth = (nextState, replace, next) => {
-  const auth = true // getStorage('tokenInfo')
-  if (!auth) {
-    replace({
-      pathname: '/login',
-      query: {
-        redirect: nextState.location.pathname
-      }
-    })
-  }
-
-  next()
-}
+// const checkAuth = (nextState, replace, next) => {
+//   const auth = true // getStorage('tokenInfo')
+//   if (!auth) {
+//     replace({
+//       pathname: '/login',
+//       query: {
+//         redirect: nextState.location.pathname
+//       }
+//     })
+//   }
+//
+//   next()
+// }
 
 export default [{
   path: '/login',
@@ -19,7 +19,6 @@ export default [{
 }, {
   path: '/',
   getComponent: () => System.import('app'),
-  onEnter: checkAuth,
   indexRoute: {
     getComponent: () => System.import('app/home')
   },

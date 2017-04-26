@@ -1,9 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { hashHistory, Router } from 'react-router'
+// import { hashHistory, Router } from 'react-router'
+// import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import createStore from './store'
 import { AppContainer } from 'react-hot-loader'
+
+import App from 'application'
 
 // ========================================================
 // Store Instantiation
@@ -31,13 +34,14 @@ const MOUNT_NODE = document.getElementById('app')
 //   })
 
 let render = () => {
-  const routes = require('./routes')
+  // const routes = require('./routes')
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
-        <div style={{ height: '100%' }}>
+        <App />
+        {/* <div style={{ height: '100%' }}>
           <Router history={ hashHistory } children={ routes } />
-        </div>
+        </div> */}
       </Provider>
     </AppContainer>,
     MOUNT_NODE
@@ -74,7 +78,7 @@ if (__DEV__) {
     }
 
     // Setup hot module replacement
-    module.hot.accept('app', render)
+    module.hot.accept('application', render)
   }
 }
 

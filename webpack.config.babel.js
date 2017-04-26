@@ -231,7 +231,7 @@ if (!__TEST__) {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor']
-    }),
+    })
     // extract css into its own file
     // new ExtractTextPlugin('[name].[contenthash].css')
   )
