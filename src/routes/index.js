@@ -13,20 +13,42 @@
 //   next()
 // }
 
+// export default [{
+//   path: '/login',
+//   getComponent: () => System.import('app/login')
+// }, {
+//   path: '/',
+//   getComponent: () => System.import('app'),
+//   indexRoute: {
+//     getComponent: () => System.import('app/home')
+//   },
+//   childRoutes: [{
+//     path: 'home',
+//     getComponent: () => System.import('app/home')
+//   }, {
+//     path: '*',
+//     getComponent: () => System.import('app/404')
+//   }]
+// }]
+
 export default [{
-  path: '/login',
-  getComponent: () => System.import('app/login')
+  path: '/home',
+  getComponent: () => System.import('modules/home'),
+  exact: true,
+  meta: {
+    auth: false,
+    title: '首页',
+    name: 'home',
+    level: ''
+  }
 }, {
-  path: '/',
-  getComponent: () => System.import('app'),
-  indexRoute: {
-    getComponent: () => System.import('app/home')
-  },
-  childRoutes: [{
-    path: 'home',
-    getComponent: () => System.import('app/home')
-  }, {
-    path: '*',
-    getComponent: () => System.import('app/404')
-  }]
+  path: '/login',
+  getComponent: () => System.import('modules/login'),
+  exact: true,
+  meta: {
+    auth: false,
+    title: '实例',
+    name: 'count',
+    level: ''
+  }
 }]

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 // import MAPS from './maps'
 import './index.css'
@@ -11,7 +12,7 @@ export const Icon = ({ type }) => (
 )
 
 Icon.propTypes = {
-  type: React.PropTypes.string
+  type: PropTypes.string
 }
 
 export default Icon

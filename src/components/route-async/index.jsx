@@ -1,12 +1,10 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Route } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 export default class RouteAsync extends React.Component {
   static propTypes = {
-    component: PropTypes.string.isRequired,
-    computedMatch: PropTypes.object,
-    match: PropTypes.object,
+    getComponent: PropTypes.func.isRequired,
     path: PropTypes.string.isRequired
   }
 
@@ -17,11 +15,9 @@ export default class RouteAsync extends React.Component {
     }
   }
 
-  getComponent () {
-    debugger
-    if (this.props.component && typeof this.props.component === 'string') {
-      console.log(this.props.component, 111111)
-      System.import(this.props.component)
+  componentWillMount () {
+    if (this.props.getComponent && typeof this.props.getComponent === 'function') {
+      this.props.getComponent()
         .then(component => {
           this.setState({
             component
@@ -35,16 +31,11 @@ export default class RouteAsync extends React.Component {
   }
 
   render () {
-    const { computedMatch, match } = this.props
-    const { url } = computedMatch || match || {}
+    const { path } = this.props
     const { component } = this.state
-    const path = url ? url + this.props.path : this.props.path
 
     return (
-      <Route path={path} render={(props) => {
-        if (!component) {
-          this.getComponent()
-        }
+      <Route {...this.props} path={path} render={props => {
         return component ? React.createElement(component, props) : null
       }} />
     )
