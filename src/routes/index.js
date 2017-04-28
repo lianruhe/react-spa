@@ -32,23 +32,17 @@
 // }]
 
 export default [{
+  from: '/',
+  to: '/home',
+  exact: true
+}, {
   path: '/home',
   getComponent: () => System.import('modules/home'),
-  exact: true,
-  meta: {
-    auth: false,
-    title: '首页',
-    name: 'home',
-    level: ''
-  }
+  exact: true
 }, {
   path: '/login',
   getComponent: () => System.import('modules/login'),
-  exact: true,
-  meta: {
-    auth: false,
-    title: '实例',
-    name: 'count',
-    level: ''
-  }
+  exact: true
+}, {
+  getComponent: () => System.import('modules/404')
 }]

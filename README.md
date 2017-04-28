@@ -8,13 +8,13 @@
   ├── cli                      # Compile, etc. Some scripts
   ├── config                   # Project environment-specific configuration settings
   ├── src                      # Application source code
-  │   ├── app                  # Components that live at a route
+  │   ├── application          # Application starter
   │   ├── components           # Generic React Components (generally Dumb components)
+  │   ├── modules              # View modules of routes
   │   ├── routes               # Application route definitions
   │   ├── static               # Static assets (not imported anywhere in source code)
   │   ├── store                # Redux-specific pieces
   │   │   ├── actions          # Redux actions
-  │   │   ├── middlewares      # Some redux middlewares
   │   │   ├── reducers         # Redux reducers
   │   │   └── index.js         # Create store
   │   ├── themes               # Application-wide styles (generally settings)
