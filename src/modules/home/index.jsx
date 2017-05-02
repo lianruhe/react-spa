@@ -12,7 +12,7 @@ export default class Home extends Component {
 
   render () {
     return (
-      <div style={{height: '100%', width: '100%', backgroundColor: 'red'}}>
+      <div id="ui-home">
         this is a home page!
       </div>
     )

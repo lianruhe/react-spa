@@ -20,6 +20,38 @@ if (__DEV__) {
   )
 }
 
+const postcssLoaders = [
+  'style-loader',
+  {
+    loader: 'css-loader',
+    options: {
+      importLoaders: 1,
+      sourceMap: true
+    }
+  },
+  {
+    loader: 'postcss-loader',
+    options: {
+      plugins: function () {
+        return [
+          require('postcss-import'),
+          require('postcss-url'),
+          // require('precss'),
+          require('postcss-cssnext')({
+            features: {
+              customProperties: {
+                variables: require(paths.src('application/style/variables.json'))
+              }
+            }
+          }),
+          require('postcss-browser-reporter'),
+          require('postcss-reporter')
+        ]
+      }
+    }
+  }
+]
+
 const webpackConfig = {
   target: 'web',
   resolve: {
@@ -93,40 +125,10 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              // root: paths.src(`themes/${config.theme}`),
-              importLoaders: 1,
-              sourceMap: true
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: function () {
-                return [
-                  require('postcss-import')({
-                    path: paths.src(`themes/${config.theme}`)
-                  }),
-                  require('postcss-url')(),
-                  // require('precss'),
-                  require('postcss-cssnext')({
-                    features: {
-                      customProperties: {
-                        variables: require(paths.src(`themes/${config.theme}/variables`))
-                      }
-                    }
-                  }),
-                  require('postcss-browser-reporter'),
-                  require('postcss-reporter')
-                ]
-              }
-            }
-          }
-        ]
+        use: __PROD__ ? ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: postcssLoaders.slice(1)
+        }) : postcssLoaders
       },
       // {
       //   test: /\.(png|jpg|gif)(\?.*)?$/,
@@ -192,7 +194,10 @@ if (__PROD__) {
       sourceMap: true
     }),
     // extract css into its own file
-    new ExtractTextPlugin('[name].[contenthash].css')
+    new ExtractTextPlugin({
+      filename: '[name].[contenthash].css',
+      allChunks: true
+    })
   )
 } else {
   debug('Enable plugins for live development (HMR, NoErrors).')
@@ -232,8 +237,6 @@ if (!__TEST__) {
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor']
     })
-    // extract css into its own file
-    // new ExtractTextPlugin('[name].[contenthash].css')
   )
 }
 

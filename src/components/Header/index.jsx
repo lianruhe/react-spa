@@ -5,11 +5,11 @@ import './index.css'
 export const Header = () => (
   <div>
     <h1>React Redux Webpack</h1>
-    <IndexLink to='/' activeClassName='route--active'>
+    <IndexLink to="/" activeClassName="route--active">
       Home
     </IndexLink>
     {' · '}
-    <Link to='/login' activeClassName='route--active'>
+    <Link to="/login" activeClassName="route--active">
       Login
     </Link>
   </div>

@@ -34,7 +34,8 @@ const config = {
   compiler_public_path: '/',
   compiler_vendor: [
     'react',
-    'prop-types'
+    'prop-types',
+    'react-router-dom'
   ]
 }
 

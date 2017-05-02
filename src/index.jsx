@@ -1,12 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import { hashHistory, Router } from 'react-router'
-// import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import createStore from './store'
 import { AppContainer } from 'react-hot-loader'
-
-import App from 'application'
 
 // ========================================================
 // Store Instantiation
@@ -18,30 +14,13 @@ const store = createStore(initialState)
 // Render Setup
 // ========================================================
 const MOUNT_NODE = document.getElementById('app')
-// initial routes
-// const walkRoutes = sets =>
-//   Object.keys(sets).map(path => {
-//     const value = sets[path]
-//
-//     return (
-//       <Route key={path} path={path} component={asyncLoader(value.component)}>
-//         { value.indexroute &&
-//           <IndexRoute component={asyncLoader(value.indexroute)} /> }
-//         { value.childroutes &&
-//           walkRoutes(value.childroutes) }
-//       </Route>
-//     )
-//   })
 
 let render = () => {
-  // const routes = require('./routes')
+  const App = require('application')
   ReactDOM.render(
     <AppContainer>
       <Provider store={store}>
         <App />
-        {/* <div style={{ height: '100%' }}>
-          <Router history={ hashHistory } children={ routes } />
-        </div> */}
       </Provider>
     </AppContainer>,
     MOUNT_NODE
@@ -78,7 +57,11 @@ if (__DEV__) {
     }
 
     // Setup hot module replacement
-    module.hot.accept('application', render)
+    module.hot.accept('./application', () => {
+      // 从DOM 中移除已经挂载的 React 组件 然后重装
+      ReactDOM.unmountComponentAtNode(MOUNT_NODE)
+      render()
+    })
   }
 }
 
