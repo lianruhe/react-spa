@@ -1,13 +1,46 @@
 .ui-notfound {
-
-
-  & .logo {
-    width: 500px;
-    height: 500px;
-    background: url(../images/404.png) no-repeat right center;
-  }
+  height: 100%;
 
   & .content-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
 
+    & .logo {
+      width: 50%;
+      height: 50%;
+      background: url(../images/404.png) no-repeat 80% center;
+    }
+
+    & .content {
+      width: 50%;
+
+      & .header {
+        font-size: 10rem;
+        color: #1656f3;
+      }
+
+      & .title {
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  & .operate {
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    text-transform: uppercase;
+
+    & .goback {
+      padding: 0 4rem 0 1rem;
+    }
+
+    & .gohome {
+      padding: 0 1rem 0 4rem;
+    }
   }
 }

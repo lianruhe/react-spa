@@ -40,7 +40,7 @@ const postcssLoaders = [
           require('postcss-cssnext')({
             features: {
               customProperties: {
-                variables: require(paths.src('application/style/variables.json'))
+                variables: require(paths.src(`themes/${config.theme}/variables.json`))
               }
             }
           }),
