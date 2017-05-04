@@ -35,6 +35,7 @@ const config = {
   compiler_vendor: [
     'react',
     'prop-types',
+    'react-router',
     'react-router-dom'
   ]
 }

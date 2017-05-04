@@ -1,5 +1,11 @@
 import React from 'react'
-import { HashRouter, Switch } from 'react-router-dom'
+import { Switch } from 'react-router'
+import { history } from 'store'
+import { ConnectedRouter } from 'react-router-redux'
+
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+
 import RouteAsync from './route-async'
 import routes from 'routes'
 import { Progress } from 'antd'
@@ -7,12 +13,13 @@ import { Progress } from 'antd'
 import 'antd/lib/style/index.css'
 import 'styles/index.css'
 
-const App = () => {
-  const num = 30
+const App = ({ progress }) => {
+  const showProgress = progress > 0 && progress < 100
+
   return (
     <div id="container">
-      <Progress id="progress" percent={num} showInfo={false} strokeWidth={5} />
-      <HashRouter>
+      {showProgress && <Progress id="progress" percent={progress} showInfo={false} strokeWidth={5} />}
+      <ConnectedRouter history={history}>
         <Switch>
           {routes.map((route, index) => {
             return (
@@ -20,9 +27,15 @@ const App = () => {
             )
           })}
         </Switch>
-      </HashRouter>
+      </ConnectedRouter>
     </div>
   )
 }
 
-export default App
+App.propTypes = {
+  progress: PropTypes.number
+}
+
+export default connect(state => ({
+  progress: state.core.progress
+}))(App)
