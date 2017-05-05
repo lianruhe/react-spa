@@ -30,6 +30,25 @@ export default class Home extends Component {
     setProgress(curProgress <= 0 ? 0 : curProgress)
   }
 
+  // componentWillMount () {
+  //   const that = this
+  //   const timer = setInterval(() => {
+  //     const { progress, setProgress } = that.props
+  //     if (progress >= 80) {
+  //       clearInterval(timer)
+  //     } else {
+  //       setProgress(progress + 10)
+  //     }
+  //   }, 500)
+  // }
+  //
+  // componentDidMount () {
+  //   this.props.setProgress(100)
+  //   setTimeout(() => {
+  //     this.props.setProgress(0)
+  //   }, 600)
+  // }
+
   render () {
     return (
       <div id="ui-home">

@@ -6,6 +6,7 @@ import persistState from 'redux-localstorage'
 import thunk from 'redux-thunk'
 import promise from 'redux-promise'
 import loggerMiddleware from 'redux-logger'
+import progressMiddleware from './middleware/progressMiddleware'
 import rootReducer from './reducers'
 
 export const history = createHistory()
@@ -14,7 +15,7 @@ export default (initialState = {}) => {
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  const middleware = [routerMiddleware(history), thunk, promise]
+  const middleware = [routerMiddleware(history), thunk, promise, progressMiddleware]
 
   // ======================================================
   // Store Enhancers
