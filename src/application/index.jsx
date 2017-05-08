@@ -14,11 +14,9 @@ import 'antd/lib/style/index.css'
 import 'styles/index.css'
 
 const App = ({ progress }) => {
-  const showProgress = progress > 0// && progress < 100
-
   return (
     <div id="container">
-      {showProgress && <Progress id="progress" percent={progress} showInfo={false} strokeWidth={3} />}
+      {progress > 0 && progress <= 100 && <Progress id="progress" percent={progress} showInfo={false} strokeWidth={3} />}
       <ConnectedRouter history={history}>
         <Switch>
           {routes.map((route, index) => {
@@ -30,10 +28,6 @@ const App = ({ progress }) => {
       </ConnectedRouter>
     </div>
   )
-}
-
-App.componentDidMount = () => {
-  console.log(this, 11111)
 }
 
 App.propTypes = {

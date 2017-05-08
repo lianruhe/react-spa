@@ -3,17 +3,21 @@ import PropTypes from 'prop-types'
 import autobind from 'autobind-decorator'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { setProgress } from 'store/actions/core'
+import { setProgress, showProgress, hideProgress } from 'store/actions/core'
+import { Button } from 'antd'
+import 'styles/app/home.css'
 
 @connect(state => ({
   progress: state.core.progress
 }), dispatch => ({
-  ...bindActionCreators({ setProgress }, dispatch)
+  ...bindActionCreators({ setProgress, showProgress, hideProgress }, dispatch)
 }))
 export default class Home extends Component {
   static propTypes = {
     progress: PropTypes.number,
-    setProgress: PropTypes.func
+    setProgress: PropTypes.func,
+    showProgress: PropTypes.func,
+    hideProgress: PropTypes.func
   }
 
   @autobind
@@ -30,32 +34,26 @@ export default class Home extends Component {
     setProgress(curProgress <= 0 ? 0 : curProgress)
   }
 
-  // componentWillMount () {
-  //   const that = this
-  //   const timer = setInterval(() => {
-  //     const { progress, setProgress } = that.props
-  //     if (progress >= 80) {
-  //       clearInterval(timer)
-  //     } else {
-  //       setProgress(progress + 10)
-  //     }
-  //   }, 500)
-  // }
-  //
-  // componentDidMount () {
-  //   this.props.setProgress(100)
-  //   setTimeout(() => {
-  //     this.props.setProgress(0)
-  //   }, 600)
-  // }
+  @autobind
+  progressShow () {
+    const { showProgress, hideProgress } = this.props
+    showProgress()
+    setTimeout(() => {
+      hideProgress()
+    }, 4000)
+  }
 
   render () {
     return (
       <div id="ui-home">
-        this is a home page!
         <div>
-          <button onClick={this.progressUp}>UP</button>
-          <button onClick={this.progressDown}>DOWN</button>
+          进度条控制：
+          <Button className="progress-btn" onClick={this.progressUp}>+</Button>
+          <Button className="progress-btn" onClick={this.progressDown}>-</Button>
+        </div>
+        <div>
+          进度条模拟:
+          <Button className="progress-btn" onClick={this.progressShow}>SHOWPROGRESS</Button>
         </div>
       </div>
     )

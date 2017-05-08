@@ -1,26 +1,35 @@
 import { createAction } from 'redux-actions'
 import { SET_PROGRESS, SET_AUTH } from '../constants/action-types'
 
-export const progress = createAction(SET_PROGRESS)
-export const setProgress = payload => {
+export const setProgress = createAction(SET_PROGRESS)
+let timer = null
+export const showProgress = () => {
   return dispatch => {
-    let num = payload
-    if (num < 0) {
-      num = 0
-    }
-    if (num > 100) {
-      num = 100
+    // 如果已经存在则不再执行
+    if (timer) {
+      return
     }
 
-    // 改变 progress
-    dispatch(progress(num))
+    let num = 10
+    timer = setInterval(() => {
+      num += 5
+      if (num <= 90) {
+        // 改变 progress
+        dispatch(setProgress(num))
+      }
+    }, 400)
+  }
+}
+export const hideProgress = () => {
+  return dispatch => {
+    clearInterval(timer)
+    timer = null
 
+    dispatch(setProgress(100))
     // 完成 500ms 之后，设置为 0
-    if (num === 100) {
-      setTimeout(() => {
-        dispatch(progress(0))
-      }, 500)
-    }
+    setTimeout(() => {
+      dispatch(setProgress(0))
+    }, 500)
   }
 }
 
