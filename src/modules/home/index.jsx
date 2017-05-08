@@ -48,12 +48,12 @@ export default class Home extends Component {
       <div id="ui-home">
         <div>
           进度条控制：
-          <Button className="progress-btn" onClick={this.progressUp}>+</Button>
-          <Button className="progress-btn" onClick={this.progressDown}>-</Button>
+          <Button className="progress-btn" type="primary" onClick={this.progressUp}>+</Button>
+          <Button className="progress-btn" type="primary" onClick={this.progressDown}>-</Button>
         </div>
         <div>
           进度条模拟:
-          <Button className="progress-btn" onClick={this.progressShow}>SHOWPROGRESS</Button>
+          <Button className="progress-btn" type="primary" onClick={this.progressShow}>SHOWPROGRESS</Button>
         </div>
       </div>
     )

@@ -2,7 +2,6 @@ import React from 'react'
 import { Switch } from 'react-router'
 import { history } from 'store'
 import { ConnectedRouter } from 'react-router-redux'
-
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
