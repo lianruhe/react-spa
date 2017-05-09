@@ -33,5 +33,15 @@ export const hideProgress = () => {
   }
 }
 
+// let prom = null
 export const setAuth = createAction(SET_AUTH,
-  payload => payload)
+  payload => new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(payload)
+    }, 2000)
+  }))
+// export const setAuth = () => {
+//   return dispatch => {
+//
+//   }
+// }

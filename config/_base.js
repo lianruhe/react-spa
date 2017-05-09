@@ -38,7 +38,8 @@ const config = {
     'react-redux',
     'prop-types',
     'react-router',
-    'react-router-dom'
+    'react-router-dom',
+    'autobind-decorator'
   ]
 }
 

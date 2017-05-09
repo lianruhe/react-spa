@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect, Route } from 'react-router-dom'
+import { Redirect, Route } from 'react-router'
 import PropTypes from 'prop-types'
 
 export default class RouteAsync extends React.Component {
@@ -7,7 +7,8 @@ export default class RouteAsync extends React.Component {
     getComponent: PropTypes.func,
     path: PropTypes.string,
     from: PropTypes.string,
-    to: PropTypes.string
+    to: PropTypes.string,
+    authorized: PropTypes.bool
   }
 
   constructor (props) {
@@ -33,11 +34,10 @@ export default class RouteAsync extends React.Component {
   }
 
   render () {
-    const { from, to, path } = this.props
+    const { from, to, path, authorized } = this.props
 
-    // 登录认证
-    const isAuthorization = true
-    if (!isAuthorization && path !== '/login') {
+    // 登录认证验证
+    if (!authorized && path !== '/login') {
       return (
         <Route {...this.props} render={props => (
           <Redirect to={{

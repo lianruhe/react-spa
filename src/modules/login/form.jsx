@@ -2,20 +2,24 @@ import React, {
   Component
 } from 'react'
 import PropTypes from 'prop-types'
+import autobind from 'autobind-decorator'
 
 import { Form, Icon, Input, Button, Checkbox } from 'antd'
 const FormItem = Form.Item
 
 class NormalLoginForm extends Component {
   static propTypes = {
-    form: PropTypes.object
+    form: PropTypes.object,
+    handleLogin: PropTypes.func
   }
 
-  handleSubmit = (e) => {
+  @autobind
+  handleSubmit (e) {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values)
+        this.props.handleLogin(values)
       }
     })
   }
