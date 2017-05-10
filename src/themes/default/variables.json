@@ -4,5 +4,17 @@
   "primary": "#38ADFF",
   "secondary": "#F43531",
   "warning": "#FF6F6F",
-  "placeholder": "#CCC"
+  "placeholder": "#CCC",
+
+  "white": "#FFFFFF",
+  "black": "#000000",
+  "red": "#DF3B3B",
+  "orange": "#E7604A",
+  "dark_blue": "#293541",
+  "light_blue": "#0C5AA9",
+
+  "primary_color": "#108ee9",
+  "aside_bg": "#333333",
+  "header_bg": "#0178A3",
+  "main_bg": "#F6F6F6"
 }

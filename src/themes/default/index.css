@@ -1,8 +1,10 @@
 #app {
   height: 100%;
+  overflow: hidden;
 
   & #container {
     height: 100%;
+    overflow: hidden;
 
     & #progress {
       /*display: none;*/
@@ -13,6 +15,86 @@
 
       & .ant-progress-inner {
         vertical-align: top;
+      }
+    }
+
+    & #header {
+      position: fixed;
+      z-index: 2;
+      width: 100%;
+      height: 50px;
+      background-color: var(--aside_bg);
+
+      & h1 {
+        width: 210px;
+        line-height: 50px;
+        color: var(--white);
+        text-align: center;
+        background-color: var(--primary_color);
+      }
+    }
+
+    & #wrapper {
+      position: fixed;
+      z-index: 1;
+      box-sizing: border-box;
+      height: 100%;
+      width: 100%;
+      padding-top: 50px;
+      padding-bottom: 0;
+
+      & #main {
+        height: 100%;
+        overflow: auto;
+        box-sizing: border-box;
+        margin-left: 210px;
+        padding: .5rem;
+        background-color: var(--main_bg);
+      }
+    }
+
+    & #aside {
+      position: fixed;
+      top: 50px;
+      width: 210px;
+      height: 100%;
+      overflow: auto;
+      box-sizing: border-box;
+      background-color: var(--aside_bg);
+    }
+  }
+
+  /* 登录页面 */
+  & #container.unauthed {
+    position: relative;
+    width: 400px;
+    min-width: 400px;
+    height: auto;
+    margin: 0 auto;
+    padding-top: 300px;
+    background: none;
+
+    & #header {
+      position: absolute;
+      width: 100%;
+      height: 50px;
+
+      & h1 {
+        width: 100%;
+      }
+    }
+
+    & #wrapper {
+      position: relative;
+      width: 100%;
+      & #main {
+        width: 100%;
+        margin: 0;
+        padding: 1rem 0 0 0;
+      }
+
+      & #aside {
+        display: none;
       }
     }
   }

@@ -12,7 +12,7 @@ import 'styles/app/home.css'
 }), dispatch => ({
   ...bindActionCreators({ setProgress, showProgress, hideProgress }, dispatch)
 }))
-export default class Home extends Component {
+export default class Demo extends Component {
   static propTypes = {
     progress: PropTypes.number,
     setProgress: PropTypes.func,
@@ -46,7 +46,15 @@ export default class Home extends Component {
   render () {
     return (
       <div id="ui-home">
-        home page!
+        <div>
+          进度条控制：
+          <Button className="progress-btn" type="primary" onClick={this.progressUp}>+</Button>
+          <Button className="progress-btn" type="primary" onClick={this.progressDown}>-</Button>
+        </div>
+        <div>
+          进度条模拟:
+          <Button className="progress-btn" type="primary" onClick={this.progressShow}>SHOWPROGRESS</Button>
+        </div>
       </div>
     )
   }
