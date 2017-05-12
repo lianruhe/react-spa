@@ -26,11 +26,52 @@
       background-color: var(--aside_bg);
 
       & h1 {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 210px;
         line-height: 50px;
         color: var(--white);
         text-align: center;
         background-color: var(--primary_color);
+      }
+
+      & .content {
+        margin-left: 210px;
+
+        & ul {
+          float: right;
+
+          & li {
+            float: left;
+
+            & a {
+              display: block;
+              line-height: 50px;
+              font-size: .9rem;
+              font-weight: bold;
+              padding: 0 1.5rem;
+              color: var(--white);
+            }
+
+            &.user {
+              &:hover {
+                background-color: #1f2932;
+              }
+
+              & span {
+                padding-left: .3rem;
+              }
+            }
+
+            &.logout {
+              & a {
+                font-size: 1.1rem;
+                background-color: #1f2932;
+              }
+            }
+          }
+        }
       }
     }
 
@@ -81,6 +122,10 @@
 
       & h1 {
         width: 100%;
+      }
+
+      & .content {
+        display: none;
       }
     }
 

@@ -38,7 +38,7 @@ export const setAuth = createAction(SET_AUTH,
   payload => new Promise((resolve, reject) => {
     setTimeout(() => {
       reject(payload)
-    }, 2000)
+    }, 500)
   }))
 // export const setAuth = () => {
 //   return dispatch => {
