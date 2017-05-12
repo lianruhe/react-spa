@@ -97,8 +97,8 @@
     & #aside {
       position: fixed;
       top: 50px;
+      bottom: 0;
       width: 210px;
-      height: 100%;
       overflow: auto;
       box-sizing: border-box;
       background-color: var(--aside_bg);

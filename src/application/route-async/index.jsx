@@ -8,6 +8,7 @@ export default class RouteAsync extends React.Component {
     path: PropTypes.string,
     from: PropTypes.string,
     to: PropTypes.string,
+    exact: PropTypes.bool,
     authorized: PropTypes.bool
   }
 
@@ -34,12 +35,12 @@ export default class RouteAsync extends React.Component {
   }
 
   render () {
-    const { from, to, path, authorized } = this.props
+    const { from, to, path, authorized, exact = true } = this.props
 
     // 登录认证验证
     if (!authorized && path !== '/login') {
       return (
-        <Route {...this.props} render={props => (
+        <Route path={path} exact={exact} render={props => (
           <Redirect to={{
             pathname: '/login',
             state: {
@@ -59,7 +60,7 @@ export default class RouteAsync extends React.Component {
     }
 
     return (
-      from && to ? <Redirect from={from} to={to} /> : <Route {...this.props} render={render} />
+      from && to ? <Redirect from={from} to={to} /> : <Route path={path} exact={exact} render={render} />
     )
   }
 }

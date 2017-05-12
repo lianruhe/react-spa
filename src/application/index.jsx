@@ -9,6 +9,7 @@ import { setAuth } from 'store/actions/core'
 
 import RouteAsync from './route-async'
 import Header from './header'
+import Aside from './aside'
 import routes from 'routes'
 import { Progress } from 'antd'
 
@@ -23,9 +24,9 @@ const App = ({ progress, authorized, setAuth }) => {
     <div id="container" className={authorized ? '' : 'unauthed'} >
       {progress > 0 && progress <= 100 && <Progress id="progress" percent={progress} showInfo={false} strokeWidth={3} />}
       <Header logout={logout} />
-      <div id="wrapper">
-        <div id="main">
-          <ConnectedRouter history={history}>
+      <ConnectedRouter history={history}>
+        <div id="wrapper">
+          <div id="main">
             <Switch>
               {routes.map((route, index) => {
                 return (
@@ -33,12 +34,10 @@ const App = ({ progress, authorized, setAuth }) => {
                 )
               })}
             </Switch>
-          </ConnectedRouter>
+          </div>
+          <Aside />
         </div>
-        <div id="aside">
-          aside
-        </div>
-      </div>
+      </ConnectedRouter>
     </div>
   )
 }
