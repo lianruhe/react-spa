@@ -4,26 +4,21 @@
 export default [{
   path: '/demo',
   getComponent: () => System.import('modules/demo'),
-  name: '示例一',
-  parent: '示例'
+  navPath: ['示例']
 }, {
   path: '/demo1',
-  getComponent: () => System.import('modules/home'),
-  name: '示例二',
-  parent: '示例'
+  getComponent: () => System.import('modules/demo'),
+  navPath: ['nav', 'demo1']
 }, {
-  path: '/nav',
-  getComponent: () => System.import('modules/home'),
-  name: '示例三',
-  parent: 'Navigtation'
+  path: '/demo2',
+  getComponent: () => System.import('modules/demo'),
+  navPath: ['nav', 'demo2']
 }, {
-  path: '/nav1',
-  getComponent: () => System.import('modules/home'),
-  name: '示例四',
-  parent: ['Navigtation', 'subNav']
+  path: '/demo3',
+  getComponent: () => System.import('modules/demo'),
+  navPath: ['nav2', 'demo3']
 }, {
-  path: '/nav2',
-  getComponent: () => System.import('modules/home'),
-  name: '示例五',
-  parent: 'Navigtation'
+  path: '/demo4',
+  getComponent: () => System.import('modules/demo'),
+  navPath: ['nav2', 'subNav', 'demo4']
 }]
