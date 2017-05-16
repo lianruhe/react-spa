@@ -8,7 +8,7 @@ const SubMenu = Menu.SubMenu
 const isArr = arg => Array.isArray(arg)
 
 const navRoutes = routes.filter(route => route.navPath && isArr(route.navPath))
-console.log(navRoutes, 'aaaaaaa')
+
 const navObj = {}
 const addNavObj = (navPath, result, route) => {
   if (navPath.length <= 1) {
@@ -23,7 +23,7 @@ const addNavObj = (navPath, result, route) => {
 navRoutes.forEach(route => {
   addNavObj(route.navPath, navObj, route)
 })
-console.log(navObj, 'vvvvvvvvv')
+// console.log(navObj, 'vvvvvvvvv')
 
 export default class Aside extends React.Component {
   constructor (props) {
