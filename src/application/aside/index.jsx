@@ -8,7 +8,6 @@ const SubMenu = Menu.SubMenu
 const isArr = arg => Array.isArray(arg)
 
 const navRoutes = routes.filter(route => route.navPath && isArr(route.navPath))
-
 const navObj = {}
 const addNavObj = (navPath, result, route) => {
   if (navPath.length <= 1) {
