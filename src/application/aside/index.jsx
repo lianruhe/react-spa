@@ -29,7 +29,8 @@ export default class Aside extends React.Component {
     super(props)
 
     this.state = {
-      current: '/404'
+      current: '/404',
+      openKeys: []
     }
   }
 
@@ -40,14 +41,38 @@ export default class Aside extends React.Component {
     })
   }
 
+  getAncestorKeys = (key) => {
+    const map = {
+      subNav: ['nav2']
+    }
+    return map[key] || []
+  }
+
+  onOpenChange = (openKeys) => {
+    console.log(openKeys)
+    const state = this.state
+    const latestOpenKey = openKeys.find(key => !(state.openKeys.indexOf(key) > -1))
+    const latestCloseKey = state.openKeys.find(key => !(openKeys.indexOf(key) > -1))
+
+    let nextOpenKeys = []
+    if (latestOpenKey) {
+      nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey)
+    }
+    if (latestCloseKey) {
+      nextOpenKeys = this.getAncestorKeys(latestCloseKey)
+    }
+    this.setState({ openKeys: nextOpenKeys })
+  }
+
   render () {
     return (
       <div id="aside">
         <Menu theme="dark"
           onClick={this.handleClick}
-          style={{ width: 210 }}
-          defaultOpenKeys={['sub2', 'sub3']}
+          openKeys={this.state.openKeys}
           selectedKeys={[this.state.current]}
+          style={{ width: 210 }}
+          onOpenChange={this.onOpenChange}
           mode="inline">
           {
             Object.keys(navObj).map(key => {
