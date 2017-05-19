@@ -12,4 +12,4 @@ git add -A
 git commit -m "$MESSAGE"
 
 # push
-git push
+git push -u ssh@git dev

@@ -4,6 +4,7 @@
     "js": "node --harmony"
   },
   "ignore": [
+    "cli",
     "coverage",
     "dist",
     "node_modules",
