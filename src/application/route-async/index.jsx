@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 
 export default class RouteAsync extends React.Component {
   static propTypes = {
+    setPathname: PropTypes.func,
+    location: PropTypes.object,
     getComponent: PropTypes.func,
     path: PropTypes.string,
     from: PropTypes.string,
@@ -17,6 +19,12 @@ export default class RouteAsync extends React.Component {
     this.state = {
       component: undefined
     }
+  }
+
+  componentWillMount () {
+    // 设置 pathname
+    const { setPathname, location } = this.props
+    setPathname(location.pathname)
   }
 
   getComponent () {
@@ -37,17 +45,17 @@ export default class RouteAsync extends React.Component {
   render () {
     const { from, to, path, authorized, exact = true } = this.props
 
+    // 重定向
+    if (from && to) {
+      return (
+        <Redirect from={from} to={to} />
+      )
+    }
+
     // 登录认证验证
     if (!authorized && path !== '/login') {
       return (
-        <Route path={path} exact={exact} render={props => (
-          <Redirect to={{
-            pathname: '/login',
-            state: {
-              from: props.location
-            }
-          }} />
-        )} />
+        <Redirect from={path} to="./login" />
       )
     }
 
@@ -60,7 +68,7 @@ export default class RouteAsync extends React.Component {
     }
 
     return (
-      from && to ? <Redirect from={from} to={to} /> : <Route path={path} exact={exact} render={render} />
+      <Route path={path} exact={exact} render={render} />
     )
   }
 }
