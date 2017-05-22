@@ -6,7 +6,6 @@ export default {
     path: '/test',
     getComponent: () => System.import('modules/demo')
   }, {
-    icon: 'appstore',
     title: 'subNav',
     subMenu: [{
       title: 'test1',

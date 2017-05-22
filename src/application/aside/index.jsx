@@ -71,7 +71,7 @@ export default class Aside extends React.Component {
       if (route.subMenu && route.subMenu.length) {
         const {title, icon, subMenu} = route
         return (
-          <SubMenu key={title} title={<span><Icon type={icon} /><span>{title}</span></span>}>
+          <SubMenu key={title} title={<span>{icon && <Icon type={icon} />}<span>{title}</span></span>}>
             { domMenu(subMenu) }
           </SubMenu>
         )
