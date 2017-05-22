@@ -5,6 +5,7 @@ import { Menu, Icon } from 'antd'
 import routes from 'routes'
 const SubMenu = Menu.SubMenu
 
+// 构造 openkeys 对象
 const openKeys = {}
 const addKeys = (routes, keys) => routes.filter(route => route.title).forEach(route => {
   if (!route.subMenu && route.path) {
@@ -15,6 +16,15 @@ const addKeys = (routes, keys) => routes.filter(route => route.title).forEach(ro
 })
 addKeys(routes, [])
 
+// 多级菜单
+const ancestorKeys = {}
+Object.keys(openKeys).forEach(key => {
+  const len = openKeys[key].length
+  if (len > 1) {
+    ancestorKeys[openKeys[key][len - 1]] = openKeys[key].slice(0, -1)
+  }
+})
+
 export default class Aside extends React.Component {
   static propTypes = {
     pathname: PropTypes.string
@@ -24,27 +34,15 @@ export default class Aside extends React.Component {
     super(props)
 
     this.state = {
-      current: '/404',
-      openKeys: []
+      openKeys: openKeys[props.pathname] || []
     }
-  }
-
-  handleClick = (e) => {
-    console.log('click ', e)
-    this.setState({
-      current: e.key
-    })
   }
 
   getAncestorKeys = (key) => {
-    const map = {
-      subNav: ['nav2']
-    }
-    return map[key] || []
+    return ancestorKeys[key] || []
   }
 
   onOpenChange = (openKeys) => {
-    console.log(openKeys)
     const state = this.state
     const latestOpenKey = openKeys.find(key => !(state.openKeys.indexOf(key) > -1))
     const latestCloseKey = state.openKeys.find(key => !(openKeys.indexOf(key) > -1))
@@ -57,6 +55,15 @@ export default class Aside extends React.Component {
       nextOpenKeys = this.getAncestorKeys(latestCloseKey)
     }
     this.setState({ openKeys: nextOpenKeys })
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const { pathname } = this.props
+    if (pathname !== nextProps.pathname) {
+      this.setState({
+        openKeys: openKeys[nextProps.pathname] || []
+      })
+    }
   }
 
   render () {
@@ -75,12 +82,13 @@ export default class Aside extends React.Component {
       )
     })
     const { pathname } = this.props
+    const { openKeys } = this.state
 
     return (
       <div id="aside">
         <Menu theme="dark"
           // onClick={this.handleClick}
-          defaultOpenKeys={openKeys[pathname]}
+          openKeys={openKeys}
           selectedKeys={[pathname]}
           style={{ width: 210 }}
           onOpenChange={this.onOpenChange}

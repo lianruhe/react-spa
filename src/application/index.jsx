@@ -30,7 +30,6 @@ const filterRoute = arr => {
   })
 }
 filterRoute(routes)
-console.log(routeArray, 11111)
 
 @connect(state => ({
   progress: state.core.progress,
@@ -84,7 +83,7 @@ export default class App extends React.Component {
                 })}
               </Switch>
             </div>
-            <Aside pathname={pathname} />
+            {pathname !== '/login' && <Aside pathname={pathname} />}
           </div>
         </ConnectedRouter>
       </div>
