@@ -1,19 +1,46 @@
-// sync from: https://github.com/crossjs/plato-request
-
-import 'whatwg-fetch'
-import Promise from 'nuo'
 import qs from 'query-string'
 import template from 'string-template'
-import isPlainObj from 'lodash.isplainobject'
+import isPlainObject from 'lodash/isPlainObject'
+import isString from 'lodash/isString'
+import merge from './object-merge'
 
-const defaultOptions = {
+const defaultReq = {
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   },
-  method: 'GET',
-  // 强制返回的结果按 JSON 处理，用于 File 协议的请求
-  forceJSON: false
+  method: 'GET'
+}
+
+const defaultInterceptors = {
+  request: [],
+  response: []
+}
+
+function clonedInterceptors () {
+  return {
+    request: defaultInterceptors.request.slice(0),
+    response: defaultInterceptors.response.slice(0)
+  }
+}
+
+/**
+ * 配置全局选项
+ * 如果子选项为对象，则合并子选项
+ * 否则直接覆盖
+ * @param  {object} options 选项
+ */
+export function configure (options) {
+  merge(defaultReq, options)
+}
+
+export function intercept ({ request, response } = {}, host = defaultInterceptors) {
+  if (request) {
+    host.request = host.request.concat(request)
+  }
+  if (response) {
+    host.response = host.response.concat(response)
+  }
 }
 
 /**
@@ -29,77 +56,76 @@ const defaultOptions = {
  *   request('path')
  *   request('path', { ... })
  *
- * @param  {String|Object} options   Options
- * @return {Promise}                 Promise
+ * @param  {string} [url]       URL
+ * @param  {object} [options]   Options
+ * @return {promise}            Promise
  */
-export default function request (...args) {
-  if (args.length === 0) {
-    console.warn('URL or Options is Required!')
-    return
-  }
-
-  if (typeof args[0] === 'string') {
-    if (args[1] === undefined) {
-      args[1] = {}
-    } else if (!isPlainObj(args[1])) {
-      console.warn('Options MUST be Object!')
-      return
+async function request (url, options) {
+  if (!options) {
+    if (isPlainObject(url)) {
+      options = url
+      url = null
+    } else {
+      options = {
+        url
+      }
     }
-    args[1].url = args[0]
-    args[0] = args[1]
   }
 
-  if (!isPlainObj(args[0])) {
-    console.warn('Options MUST be Object!')
-    return
+  if (!isPlainObject(options)) {
+    throw new ParameterException('Options must be an object!')
   }
-  return new Promise((resolve, reject) => {
-    promisify(parseOptions(merge({}, defaultOptions, args[0])))
-    .then(({ url, ...options }) => fetch(url, options))
-    .then(res => {
-      if (res && (isHttpOk(res) || isFileOk(res))) {
-        getBody(res, args[0].forceJSON).then(resolve, reject)
-      } else {
-        getBody(res, args[0].forceJSON).then(reject)
-      }
-    })
-    .catch(reject)
-  })
+
+  if (isString(url)) {
+    options.url = url
+  }
+
+  if (!isString(options.url)) {
+    throw new ParameterException('URL is required!')
+  }
+
+  const { interceptors, ...localReq } = options
+
+  let req = merge({}, defaultReq, localReq)
+  req.interceptors = clonedInterceptors()
+  intercept(interceptors, req.interceptors)
+
+  req = await parseReq(req)
+  req = (await iterateInterceptors({ req })).req
+
+  let res = await fetch(req.url, req)
+  res = (await iterateInterceptors({ req, res })).res
+
+  const body = await getBody(res)
+
+  if (res.status >= 200 && res.status < 400) {
+    return body
+  }
+
+  throw body
 }
 
-function merge (src, ...args) {
-  args.forEach(arg => {
-    Object.keys(arg).forEach(key => {
-      if (isPlainObj(arg[key])) {
-        if (!src.hasOwnProperty(key)) {
-          src[key] = {}
-        }
-        Object.assign(src[key], arg[key])
-      } else {
-        src[key] = arg[key]
-      }
-    })
-  })
-  return src
-}
-
-function isHttpOk (res) {
-  return res.status >= 200 && res.status < 400
-}
-
-function isFileOk (res) {
-  return res.status === 0 && (res.url.indexOf('file://') === 0 || res.url === '')
-}
-
-function getBody (res, forceJSON) {
+async function getBody (res) {
   const type = res.headers.get('Content-Type')
-  return (forceJSON || (type && type.indexOf('json') !== -1)) ? res.json() : res.text()
+
+  if (type && type.indexOf('json') !== -1) {
+    const body = await res.json()
+    return body
+  }
+
+  const body = await res.text()
+
+  try {
+    return JSON.parse(body)
+  } catch (error) {
+    return { body }
+  }
 }
 
-function parseOptions ({ url = '', query, params, body, mutate, ...options }) {
+function parseReq ({ url, query, params, body, ...req }) {
   if (body) {
     if (typeof body === 'object') {
-      if (/^(POST|PUT|PATCH)$/i.test(options.method)) {
+      if (/^(POST|PUT|PATCH)$/i.test(req.method)) {
         body = JSON.stringify(body)
       } else {
         url += ((url.indexOf('?') !== -1) ? '&' : '?') + qs.stringify(body)
@@ -107,7 +133,7 @@ function parseOptions ({ url = '', query, params, body, mutate, ...options }) {
       }
     }
     if (body) {
-      options.body = body
+      req.body = body
     }
   }
 
@@ -117,7 +143,7 @@ function parseOptions ({ url = '', query, params, body, mutate, ...options }) {
     }
 
     if (query) {
-      url += ((url.indexOf('?') !== -1) ? '&' : '?') + query
+      url += (url.indexOf('?') === -1 ? '?' : '&') + query
     }
   }
 
@@ -126,16 +152,61 @@ function parseOptions ({ url = '', query, params, body, mutate, ...options }) {
     url = template(url, params)
   }
 
-  options.url = url
+  req.url = url
 
-  // mutate must be a function and could return a promise
-  // useful for add authorization
-  return mutate ? mutate(options) : options
+  return req
 }
 
-function promisify (val) {
-  if (val && val.then && typeof val.then === 'function') {
-    return val
+function iterateInterceptors (val) {
+  const interceptors = val.res ? val.req.interceptors.response : val.req.interceptors.request
+
+  let i = 0
+  async function iterator (val) {
+    const interceptor = interceptors[i++]
+
+    if (!interceptor) {
+      return val
+    }
+
+    return iterator(await interceptor(val))
   }
-  return Promise.resolve(val)
+
+  return iterator(val)
+}
+
+function ParameterException (message) {
+  this.message = message
+  this.name = 'ParameterException'
+}
+
+export default request
+
+export function get (url, req = {}) {
+  req.url = url
+  req.method = 'GET'
+  return request(req)
+}
+
+export function post (url, req = {}) {
+  req.url = url
+  req.method = 'POST'
+  return request(req)
+}
+
+export function put (url, req = {}) {
+  req.url = url
+  req.method = 'PUT'
+  return request(req)
+}
+
+export function patch (url, req = {}) {
+  req.url = url
+  req.method = 'PATCH'
+  return request(req)
+}
+
+export function del (url, req = {}) {
+  req.url = url
+  req.method = 'DELETE'
+  return request(req)
 }

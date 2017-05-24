@@ -1,4 +1,4 @@
-# eslint 
+# eslint
 {
   "parser": "babel-eslint",
   "extends": [
@@ -72,6 +72,7 @@
     "jsx-quotes": [2, "prefer-double"],
 
     "no-alert": 2,
+    "no-await-in-loop": 2,
     "no-const-assign": 2,
     "no-else-return": 2,
     "no-this-before-super": 2,

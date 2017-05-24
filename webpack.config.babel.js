@@ -7,11 +7,11 @@ import _debug from 'debug'
 import config, { paths } from './config'
 
 const { __DEV__, __PROD__, __TEST__ } = config.globals
-const debug = _debug('rrw:webpack')
+const debug = _debug('app:webpack')
 
 debug('Create configuration.')
 
-const appEntry = [paths.src('index.jsx')]
+const appEntry = ['whatwg-fetch', paths.src('index.jsx')]
 if (__DEV__) {
   appEntry.unshift(
     'react-hot-loader/patch',

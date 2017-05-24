@@ -55,7 +55,7 @@ export default class RouteAsync extends React.Component {
     // 登录认证验证
     if (!authorized && path !== '/login') {
       return (
-        <Redirect from={path} to="./login" />
+        <Redirect exact="false" from={path} to="/login" />
       )
     }
 

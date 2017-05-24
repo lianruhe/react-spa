@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions'
-import { SET_PROGRESS, SET_AUTH } from '../../constants/action-types'
+import { SET_PROGRESS, SET_AUTH, SET_USER } from '../../constants/action-types'
 
 export default handleActions({
 
@@ -9,14 +9,21 @@ export default handleActions({
   }),
 
   [SET_AUTH]: (state, action) => {
-    console.log(action, 1111111111)
     return {
       ...state,
       authorized: !!action.payload
+    }
+  },
+
+  [SET_USER]: (state, action) => {
+    return {
+      ...state,
+      user: action.payload
     }
   }
 
 }, {
   progress: 0,
-  authorized: false
+  authorized: false,
+  user: {}
 })

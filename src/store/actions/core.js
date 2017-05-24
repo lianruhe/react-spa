@@ -1,5 +1,8 @@
 import { createAction } from 'redux-actions'
-import { SET_PROGRESS, SET_AUTH } from '../constants/action-types'
+import { SET_PROGRESS, SET_AUTH, SET_USER } from '../constants/action-types'
+import request from 'utils/request'
+import { APP_RES } from 'utils/config'
+import { LOGIN_API } from '../constants/apis'
 
 export const setProgress = createAction(SET_PROGRESS)
 let timer = null
@@ -40,8 +43,14 @@ export const setAuth = createAction(SET_AUTH,
       reject(payload)
     }, 500)
   }))
-// export const setAuth = () => {
-//   return dispatch => {
-//
-//   }
-// }
+
+export const setUser = createAction(SET_USER)
+
+export const login = payload => {
+  return dispatch => {
+    request(`${APP_RES.base}${LOGIN_API}`, payload).then(data => {
+      dispatch(setAuth(true))
+      dispatch(setUser(data))
+    })
+  }
+}
