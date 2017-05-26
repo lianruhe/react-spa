@@ -20,7 +20,7 @@ export default (initialState = {}) => {
   // ======================================================
   // Store Enhancers
   // ======================================================
-  const enhancers = [persistState(['tokens'])]
+  const enhancers = [persistState(['core'])]
 
   if (__DEV__) {
     const devToolsExtension = window.devToolsExtension
