@@ -1,1 +1,5 @@
-{}
+{
+  "/list?page=1&size=20/": "/faq",
+  "/list?page=1&size=20": "/login",
+  "/api/": "/"
+}

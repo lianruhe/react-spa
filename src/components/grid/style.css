@@ -1,0 +1,14 @@
+.component-grid {
+  padding: 8px;
+  background-color: '#FFFFFF';
+
+  & .grid-operation-btn {
+    margin: 0 12px 8px 0;
+  }
+
+  & .grid-search {
+    float: right;
+    min-width: 200px;
+    width: 25%;
+  }
+}

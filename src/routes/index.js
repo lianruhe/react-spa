@@ -16,13 +16,21 @@ export default [{
     path: '/home',
     getComponent: () => System.import('modules/home')
   }, {
-    title: '示例',
-    path: '/demo',
-    getComponent: () => System.import('modules/demo')
-  }, {
     title: '404',
     path: '/404',
     getComponent: () => System.import('modules/404')
+  }]
+}, {
+  icon: 'appstore',
+  title: 'demo',
+  subMenu: [{
+    title: '小组件',
+    path: '/demo1',
+    getComponent: () => System.import('modules/demo')
+  }, {
+    title: '表格',
+    path: '/demo-table',
+    getComponent: () => System.import('modules/demo/table')
   }]
 }, {
   path: '/login',

@@ -1,6 +1,7 @@
 #app {
   height: 100%;
   overflow: hidden;
+  background-color: var(--main_bg);
 
   & #container {
     height: 100%;
@@ -113,7 +114,7 @@
     height: auto;
     margin: 0 auto;
     padding-top: 300px;
-    background: none;
+    overflow: visible;
 
     & #header {
       position: absolute;
@@ -132,10 +133,12 @@
     & #wrapper {
       position: relative;
       width: 100%;
+      box-shadow: 0 0 18px rgba(0, 0, 0, .3);
       & #main {
         width: 100%;
         margin: 0;
         padding: 1rem 0 0 0;
+        background-color: var(--white);
       }
 
       & #aside {

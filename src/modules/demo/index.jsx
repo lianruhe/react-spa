@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { setProgress, showProgress, hideProgress } from 'store/actions/core'
 import { Button } from 'antd'
+// import Grid from 'components/grid'
 import 'styles/app/home.css'
 
 @connect(state => ({
