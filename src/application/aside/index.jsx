@@ -67,6 +67,9 @@ export default class Aside extends React.Component {
   }
 
   render () {
+    const { pathname } = this.props
+    const { openKeys } = this.state
+
     const domMenu = routes => routes.filter(route => route.title).map(route => {
       if (route.subMenu && route.subMenu.length) {
         const {title, icon, subMenu} = route
@@ -78,11 +81,11 @@ export default class Aside extends React.Component {
       }
       const {title, path} = route
       return (
-        <Menu.Item key={path}><Link to={path}>{title}</Link></Menu.Item>
+        <Menu.Item key={path}>
+          {pathname === path ? title : <Link to={path}>{title}</Link>}
+        </Menu.Item>
       )
     })
-    const { pathname } = this.props
-    const { openKeys } = this.state
 
     return (
       <div id="aside">

@@ -31,6 +31,10 @@ export default [{
     title: '表格',
     path: '/demo-table',
     getComponent: () => System.import('modules/demo/table')
+  }, {
+    title: '表单',
+    path: '/demo-form',
+    getComponent: () => System.import('modules/demo/form')
   }]
 }, {
   path: '/login',

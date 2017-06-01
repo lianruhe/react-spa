@@ -26,7 +26,7 @@ export default class tableDemo extends React.Component {
   state = {
     data: [],
     pagination: {},
-    loading: false,
+    loading: true,
     selectedRowKeys: []
   }
   handleTableChange = (pagination, filters, sorter) => {
@@ -45,7 +45,7 @@ export default class tableDemo extends React.Component {
   }
   fetch = (params = {}) => {
     console.log('params:', params)
-    this.setState({ loading: true })
+    // this.setState({ loading: true })
     request({
       url: 'https://randomuser.me/api',
       method: 'get',
