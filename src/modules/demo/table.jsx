@@ -3,25 +3,6 @@ import React from 'react'
 import Grid from 'components/grid'
 import request from 'utils/request'
 
-const columns = [{
-  title: 'Name',
-  dataIndex: 'name',
-  sorter: true,
-  render: name => `${name.first} ${name.last}`,
-  width: '20%'
-}, {
-  title: 'Gender',
-  dataIndex: 'gender',
-  filters: [
-    { text: 'Male', value: 'male' },
-    { text: 'Female', value: 'female' }
-  ],
-  width: '20%'
-}, {
-  title: 'Email',
-  dataIndex: 'email'
-}]
-
 export default class tableDemo extends React.Component {
   state = {
     data: [],
@@ -66,10 +47,42 @@ export default class tableDemo extends React.Component {
       })
     })
   }
+  handleEdit (val) {
+    console.log('eidt', val)
+  }
   componentDidMount () {
     this.fetch()
   }
   render () {
+    const { handleEdit } = this
+    const columns = [{
+      title: 'Name',
+      dataIndex: 'name',
+      sorter: true,
+      render: name => `${name.first} ${name.last}`,
+      width: '20%'
+    }, {
+      title: 'Gender',
+      dataIndex: 'gender',
+      filters: [
+        { text: 'Male', value: 'male' },
+        { text: 'Female', value: 'female' }
+      ],
+      width: '20%'
+    }, {
+      title: 'Email',
+      dataIndex: 'email'
+    }, {
+      title: 'Action',
+      key: 'action',
+      render: (text, record) => (
+        <span>
+          <a href="javascript:;" onClick={() => { handleEdit(record) }}>Edit</a>
+          <span className="ant-divider" />
+          <a href="#">Delete</a>
+        </span>
+      )
+    }]
     return (
       <div style={{backgroundColor: '#FFFFFF'}}>
         <Grid

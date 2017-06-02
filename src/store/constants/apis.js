@@ -1,7 +1,7 @@
 // apis
 
 // 登录
-export const LOGIN_API = '/login'
+export const LOGIN_API = '/dtp/login.action'
 export const LOGOUT_API = '/logout'
 
 // demo

@@ -23,13 +23,12 @@ const DemoForm = () => {
     },
     element: <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="Password" />
   }, {
-    label: '',
-    id: 'opea',
+    id: 'opeation',
     col: {
       labelCol: { span: 0 },
       wrapperCol: { span: 12, offset: 6 }
     },
-    element: <span><Button type="primary" htmlType="submit">Submit</Button><Button htmlType="submit">Cancel</Button></span>
+    element: <span><Button type="primary" htmlType="submit">Submit</Button><Button>Cancel</Button></span>
   }]
   const formData = {
     name: {
