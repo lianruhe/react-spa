@@ -4,15 +4,18 @@ read MESSAGE
 
 echo "Deploying $MESSAGE ..."
 
-# build
-npm run build
+# clean
+npm run clean
+
+# compiler
+npm run compile
 
 # commit
 cd dist
 git init
 git add -A
 git commit -m "$MESSAGE"
-git push -f https://github.com/lianruhe/react-redux-webpack.git master:gh-pages
+git push -f git@github.com:lianruhe/react-spa.git master:gh-pages
 
 # back to root
 cd ..

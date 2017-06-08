@@ -51,6 +51,8 @@ export const login = payload => {
     request(`${APP_RES.base}${LOGIN_API}`, payload).then(data => {
       dispatch(setAuth(true))
       dispatch(setUser(data))
+    }).catch(data => {
+      dispatch(setUser(data))
     })
   }
 }

@@ -47,6 +47,7 @@ const config = {
 // Environment
 // ------------------------------------
 config.globals = {
+  'process.env.NODE_ENV': JSON.stringify(config.env),
   __DEV__: config.env === 'development',
   __PROD__: config.env === 'production',
   __TEST__: config.env === 'test'
