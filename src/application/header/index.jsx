@@ -1,11 +1,11 @@
 import React from 'react'
+import pureRender from 'utils/pure-render'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 
 import { Icon } from 'antd'
 import Avatar from 'components/avatar'
 
-const Header = ({ authorized, logout }) => {
+const Header = ({ userInfo, logout }) => {
   return (
     <div id="header">
       <h1>管理系统</h1>
@@ -29,10 +29,8 @@ const Header = ({ authorized, logout }) => {
 }
 
 Header.propTypes = {
-  authorized: PropTypes.bool,
+  userInfo: PropTypes.bool,
   logout: PropTypes.func
 }
 
-export default connect(state => ({
-  authorized: state.core.authorized
-}))(Header)
+export default pureRender(Header)

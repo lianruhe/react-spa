@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import Base from 'components/base'
 import PropTypes from 'prop-types'
 import autobind from 'autobind-decorator'
 import { connect } from 'react-redux'
@@ -13,7 +14,7 @@ import 'styles/app/home.css'
 }), dispatch => ({
   ...bindActionCreators({ setProgress, showProgress, hideProgress }, dispatch)
 }))
-export default class Demo extends Component {
+export default class Demo extends Base {
   static propTypes = {
     progress: PropTypes.number,
     setProgress: PropTypes.func,

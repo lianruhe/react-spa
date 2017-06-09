@@ -34,12 +34,14 @@ const config = {
   compiler_public_path: '/',
   compiler_vendor: [
     'react',
+    'react-dom',
     'redux',
     'react-redux',
-    'prop-types',
     'react-router',
     'react-router-dom',
-    'autobind-decorator'
+    'prop-types',
+    'autobind-decorator',
+    'immutable'
   ]
 }
 

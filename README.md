@@ -1,5 +1,5 @@
 ## React-SPA
-  SPA use react, redux, react-router
+  SPA use react, redux, react-router, immutable
 
 ## Structure
 

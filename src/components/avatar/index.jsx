@@ -1,4 +1,5 @@
 import React from 'react'
+import pureRender from 'utils/pure-render'
 import PropTypes from 'prop-types'
 
 import './style.css'
@@ -25,4 +26,4 @@ Avatar.propTypes = {
   size: PropTypes.string
 }
 
-export default Avatar
+export default pureRender(Avatar)

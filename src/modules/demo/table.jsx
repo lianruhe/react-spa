@@ -1,9 +1,10 @@
 import React from 'react'
+import Base from 'components/base'
 // import { Table, Button } from 'antd'
 import Grid from 'components/grid'
 import request from 'utils/request'
 
-export default class tableDemo extends React.Component {
+export default class tableDemo extends Base {
   state = {
     data: [],
     pagination: {},

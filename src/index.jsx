@@ -15,7 +15,7 @@ const store = createStore(initialState)
 // ========================================================
 const MOUNT_NODE = document.getElementById('app')
 
-let render = () => {
+const render = () => {
   const App = require('application')
   ReactDOM.render(
     <AppContainer>
@@ -27,36 +27,15 @@ let render = () => {
   )
 }
 
-// ========================================================
-// Developer Tools Setup
-// ========================================================
+// This code is excluded from production bundle
 if (__DEV__) {
+  // Developer Tools Setup
   if (window.devToolsExtension) {
     window.devToolsExtension.open()
   }
-}
 
-// This code is excluded from production bundle
-if (__DEV__) {
+  // Setup hot module replacement
   if (module.hot) {
-    // Development render functions
-    const renderApp = render
-    const renderError = (error) => {
-      const RedBox = require('redbox-react')
-
-      ReactDOM.render(<RedBox error={error} />, MOUNT_NODE)
-    }
-
-    // Wrap render in try/catch
-    render = () => {
-      try {
-        renderApp()
-      } catch (error) {
-        renderError(error)
-      }
-    }
-
-    // Setup hot module replacement
     module.hot.accept('./application', () => {
       // 从DOM 中移除已经挂载的 React 组件 然后重装
       ReactDOM.unmountComponentAtNode(MOUNT_NODE)

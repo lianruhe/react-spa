@@ -1,6 +1,5 @@
-import React, {
-  Component
-} from 'react'
+import React from 'react'
+import Base from 'components/base'
 import PropTypes from 'prop-types'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
@@ -17,7 +16,7 @@ import 'styles/app/login.css'
 }), dispatch => ({
   ...bindActionCreators({ login }, dispatch)
 }))
-export default class Login extends Component {
+export default class Login extends Base {
   static propTypes = {
     // setAuth: PropTypes.func,
     login: PropTypes.func,

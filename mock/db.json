@@ -1,7 +1,7 @@
 {
-  "login.action": {
-    "username": "ddd",
-    "password": "ddd",
+  "login": {
+    "username": "admin@ndtest",
+    "password": "123456",
     "remember": true
   },
   "faq": [

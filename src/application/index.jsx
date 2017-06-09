@@ -14,7 +14,7 @@ import Aside from './aside'
 import routes from 'routes'
 import { Progress } from 'antd'
 
-import 'antd/lib/style/index.css'
+// import 'antd/lib/style/index.css'
 import 'styles/index.css'
 
 const routeArray = []
@@ -71,7 +71,7 @@ export default class App extends React.Component {
     return (
       <div id="container" className={authorized ? '' : 'unauthed'} >
         {progress > 0 && progress <= 100 && <Progress id="progress" percent={progress} showInfo={false} strokeWidth={3} />}
-        <Header logout={this.logout} />
+        <Header userInfo={authorized} logout={this.logout} />
         <ConnectedRouter history={history}>
           <div id="wrapper">
             <div id="main">

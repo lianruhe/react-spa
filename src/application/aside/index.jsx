@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Base from 'components/base'
 import { Link } from 'react-router-dom'
 import { Menu, Icon } from 'antd'
 import routes from 'routes'
@@ -25,7 +26,7 @@ Object.keys(openKeys).forEach(key => {
   }
 })
 
-export default class Aside extends React.Component {
+export default class Aside extends Base {
   static propTypes = {
     pathname: PropTypes.string
   }

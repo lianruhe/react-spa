@@ -8,9 +8,9 @@ const DEBUG = 2
 const PRODUCTION = 4
 
 // mock 数据地址
-const MOCK_HOST = 'localhost:8080'
+const MOCK_HOST = 'localhost:3001'
 // 线上数据地址
-const PRO_HOST = 'localhost:8080'
+const PRO_HOST = 'localhost:3001'
 
 const LOC_PROTOCOL = location.protocol + '//'
 const LOC_HOST = location.host

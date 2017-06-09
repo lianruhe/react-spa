@@ -7,6 +7,7 @@
  * @param {object} formData     Form 初始化参数
  */
 import React from 'react'
+import pureRender from 'utils/pure-render'
 import PropTypes from 'prop-types'
 
 import FormClass from './form'
@@ -31,4 +32,4 @@ RcForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired
 }
 
-export default RcForm
+export default pureRender(RcForm)

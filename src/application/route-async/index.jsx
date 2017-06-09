@@ -1,8 +1,9 @@
 import React from 'react'
+import Base from 'components/base'
 import { Redirect, Route } from 'react-router'
 import PropTypes from 'prop-types'
 
-export default class RouteAsync extends React.Component {
+export default class RouteAsync extends Base {
   static propTypes = {
     setPathname: PropTypes.func,
     location: PropTypes.object,

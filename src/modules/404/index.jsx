@@ -1,4 +1,5 @@
 import React from 'react'
+import pureRender from 'utils/pure-render'
 import { Icon } from 'antd'
 import 'styles/app/404.css'
 import { Link } from 'react-router-dom'
@@ -38,4 +39,4 @@ Error.propTypes = {
   history: PropTypes.object
 }
 
-export default Error
+export default pureRender(Error)

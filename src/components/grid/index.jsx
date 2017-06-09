@@ -1,4 +1,5 @@
 import React from 'react'
+import pureRender from 'utils/pure-render'
 import PropTypes from 'prop-types'
 import { Table, Button, Input } from 'antd'
 
@@ -34,4 +35,4 @@ Grid.propTypes = {
   search: PropTypes.object
 }
 
-export default Grid
+export default pureRender(Grid)
