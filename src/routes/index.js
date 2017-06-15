@@ -7,7 +7,7 @@ import navtest from './navtest'
 export default [{
   from: '/',
   to: '/home',
-  exact: true   // 存在问题
+  exact: true   // 重定向
 }, {
   icon: 'appstore',
   title: '系统菜单',
@@ -35,6 +35,10 @@ export default [{
     title: '表单',
     path: '/demo-form',
     getComponent: () => System.import('modules/demo/form')
+  }, {
+    title: 'test',
+    path: '/demo-test',
+    getComponent: () => System.import('modules/demo/test')
   }]
 }, {
   path: '/login',

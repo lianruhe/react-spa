@@ -191,7 +191,7 @@ if (__PROD__) {
         dead_code: true,
         warnings: false
       },
-      sourceMap: true
+      sourceMap: false
     }),
     // extract css into its own file
     new ExtractTextPlugin({

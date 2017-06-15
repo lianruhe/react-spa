@@ -4,10 +4,9 @@ import { GET_DEMO_LIST } from '../../constants/action-types'
 export default handleActions({
 
   [GET_DEMO_LIST]: (state, action) => ({
-    ...state,
-    progress: action.payload || 0
+    results: action.payload
   })
 
 }, {
-  progress: 0
+  results: {}
 })
