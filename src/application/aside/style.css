@@ -1,0 +1,17 @@
+#aside {
+  position: fixed;
+  top: 50px;
+  bottom: 0;
+  width: 210px;
+  overflow: auto;
+  box-sizing: border-box;
+  background-color: var(--aside_bgc);
+
+  & ul {
+    background-color: var(--aside_bgc);
+
+    & .ant-menu-item-selected {
+      background-color: var(--title_bgc);
+    }
+  }
+}

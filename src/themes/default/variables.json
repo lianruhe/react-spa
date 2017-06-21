@@ -1,10 +1,11 @@
 {
-  "text": "#333",
-  "disabled": "#CCC",
+  "text": "#333333",
+  "text_light": "#EEEEEE",
+  "disabled": "#CCCCCC",
   "primary": "#38ADFF",
   "secondary": "#F43531",
   "warning": "#FF6F6F",
-  "placeholder": "#CCC",
+  "placeholder": "#CCCCCC",
 
   "white": "#FFFFFF",
   "black": "#000000",
@@ -13,8 +14,10 @@
   "dark_blue": "#293541",
   "light_blue": "#0C5AA9",
 
-  "primary_color": "#108ee9",
-  "aside_bg": "#333333",
-  "header_bg": "#0178A3",
-  "main_bg": "#F6F6F6"
+  "primary_color": "#108EE9",
+  "title_bgc": "#0B2552",
+  "header_bgc": "#2F549A",
+  "aside_bgc": "#0C3165",
+  "aside_menu_bgc": "#0C3165",
+  "main_bgc": "#F6F6F6"
 }

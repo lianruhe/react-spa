@@ -5,6 +5,8 @@ import PropTypes from 'prop-types'
 import { Icon } from 'antd'
 import Avatar from 'components/avatar'
 
+import './style.css'
+
 const Header = ({ userInfo, logout }) => {
   return (
     <div id="header">
@@ -14,7 +16,7 @@ const Header = ({ userInfo, logout }) => {
           <li className="user">
             <a href="javascript:;">
               <Avatar className="circle" size="small">
-                <img src="images/wx@2x.png" />
+                <img src="static/images/wx@2x.png" />
               </Avatar>
               <span>管理员</span>
             </a>

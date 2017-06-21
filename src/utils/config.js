@@ -9,13 +9,25 @@ const PRODUCTION = 4
 
 // mock 数据地址
 const MOCK_HOST = 'localhost:3001'
-// 线上数据地址
-const PRO_HOST = 'localhost:3001'
+// 生产数据地址
+const PRO_HOST = '155.16.xxx.xxx'
 
 const LOC_PROTOCOL = location.protocol + '//'
 const LOC_HOST = location.host
 // host === hostname:port
 const LOC_HOSTNAME = location.hostname
+
+const LOC_RES = {
+  module: 'loc',
+  protocol: LOC_PROTOCOL,
+  host: LOC_HOST,
+  ver: 'v0.1'
+}
+const APP_RES = {
+  module: 'app',
+  protocol: 'http://',
+  ver: ''
+}
 
 /**
  * @constant {number} ENV
@@ -33,18 +45,6 @@ const ENV = (() => {
   }
   return PRODUCTION
 })()
-
-const LOC_RES = {
-  module: 'loc',
-  protocol: LOC_PROTOCOL,
-  host: LOC_HOST,
-  ver: 'v0.1'
-}
-const APP_RES = {
-  module: 'app',
-  protocol: 'http://',
-  ver: ''
-}
 
 switch (ENV) {
   case SIMULATION:

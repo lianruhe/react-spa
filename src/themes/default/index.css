@@ -1,9 +1,25 @@
 @import "helpers";
 
+/*body {
+  &::-webkit-scrollbar {
+    width: 0.3rem;
+    height: 0.3rem;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #E7604A;
+  }
+  &::-webkit-scrollbar-button {
+    height: 0;
+    width: 0;
+    background-color: transparent;
+  }
+}*/
+
 #app {
   height: 100%;
   overflow: hidden;
-  background-color: var(--main_bg);
+  background-color: var(--main_bgc);
 
   & #container {
     height: 100%;
@@ -18,63 +34,6 @@
 
       & .ant-progress-inner {
         vertical-align: top;
-      }
-    }
-
-    & #header {
-      position: fixed;
-      z-index: 2;
-      width: 100%;
-      height: 50px;
-      background-color: var(--aside_bg);
-
-      & h1 {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 210px;
-        line-height: 50px;
-        color: var(--white);
-        text-align: center;
-        background-color: var(--primary_color);
-      }
-
-      & .content {
-        margin-left: 210px;
-
-        & ul {
-          float: right;
-
-          & li {
-            float: left;
-
-            & a {
-              display: block;
-              line-height: 50px;
-              font-size: .9rem;
-              font-weight: bold;
-              padding: 0 1.5rem;
-              color: var(--white);
-            }
-
-            &.user {
-              &:hover {
-                background-color: #1f2932;
-              }
-
-              & span {
-                padding-left: .3rem;
-              }
-            }
-
-            &.logout {
-              & a {
-                font-size: 1.1rem;
-                background-color: #1f2932;
-              }
-            }
-          }
-        }
       }
     }
 
@@ -93,18 +52,8 @@
         box-sizing: border-box;
         margin-left: 210px;
         padding: .5rem;
-        background-color: var(--main_bg);
+        background-color: var(--main_bgc);
       }
-    }
-
-    & #aside {
-      position: fixed;
-      top: 50px;
-      bottom: 0;
-      width: 210px;
-      overflow: auto;
-      box-sizing: border-box;
-      background-color: var(--aside_bg);
     }
   }
 
@@ -141,10 +90,6 @@
         margin: 0;
         padding: 1rem 0 0 0;
         background-color: var(--white);
-      }
-
-      & #aside {
-        display: none;
       }
     }
   }
