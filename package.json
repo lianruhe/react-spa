@@ -87,6 +87,7 @@
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.3",
+    "less-loader": "^4.0.4",
     "loader-utils": "^1.1.0",
     "mocha": "^3.1.2",
     "nightwatch": "^0.9.8",
@@ -116,8 +117,7 @@
     "webpack-hot-middleware": "^2.17.1",
     "yargs": "^7.1.0"
   },
-  "engines": {
-    "node": ">= 5.10.0",
-    "npm": ">= 3.6.0"
+  "theme": {
+    "primary-color": "#529ef2"
   }
 }

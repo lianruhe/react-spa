@@ -101,7 +101,7 @@ const webpackConfig = {
     vendor: config.compiler_vendor
   },
   output: {
-    path: paths.dist(),
+    path: paths.dist(__PROD__ ? 'static' : ''),
     publicPath: config.compiler_public_path,
     filename: `[name].[${config.compiler_hash_type}].js`,
     chunkFilename: `[id].[${config.compiler_hash_type}].js`
@@ -131,6 +131,20 @@ const webpackConfig = {
         }) : postcssLoaders
       },
       // {
+      //   test: /\.less$/,
+      //   use: [
+      //     'style-loader',
+      //     {
+      //       loader: 'css-loader',
+      //       options: {
+      //         importLoaders: 1,
+      //         sourceMap: true
+      //       }
+      //     },
+      //     'less-loader'
+      //   ]
+      // },
+      // {
       //   test: /\.(png|jpg|gif)(\?.*)?$/,
       //   loader: 'file-loader',
       //   options: {
@@ -154,7 +168,7 @@ const webpackConfig = {
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: 'index.html',
+      filename: `${__PROD__ ? '../' : ''}index.html`,
       template: paths.src('index.ejs'),
       title: `${config.pkg.name} - ${config.pkg.description}`,
       hash: false,
@@ -165,7 +179,8 @@ const webpackConfig = {
       }
     }),
     new CopyWebpackPlugin([{
-      from: paths.src('static')
+      from: paths.src('static'),
+      to: paths.dist('static')
     }], {
       // ignore: ['*.ico', '*.md']
     })
