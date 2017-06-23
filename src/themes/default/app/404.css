@@ -12,7 +12,7 @@
     & .logo {
       width: 50%;
       height: 50%;
-      background: url(../images/404.png) no-repeat 80% center;
+      background: url(/static/images/404.png) no-repeat 80% center;
     }
 
     & .content {

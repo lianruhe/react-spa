@@ -1,17 +1,59 @@
 #aside {
   position: fixed;
-  top: 50px;
+  top: 0;
   bottom: 0;
-  width: 210px;
-  overflow: auto;
+  width: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
   box-sizing: border-box;
-  background-color: var(--aside_bgc);
+  background: var(--aside_bgc) url(/static/images/aside-bgi.png) no-repeat bottom;
+
+  & #admin-title {
+    line-height: 90px;
+    font-size: 16px;
+    color: var(--title_color);
+    text-align: center;
+    margin-bottom: 10px;
+    background-color: var(--title_bgc);
+  }
 
   & ul {
-    background-color: var(--aside_bgc);
+    background-color: transparent;
 
-    & .ant-menu-item-selected {
-      background-color: var(--title_bgc);
+    & .ant-menu-submenu {
+      & > .ant-menu-submenu-title {
+        color: var(--text_color);
+      }
+
+      &.ant-menu-submenu-active {
+        & > .ant-menu-submenu-title {
+          color: var(--text_hover);
+        }
+      }
+    }
+
+    & .ant-menu-item {
+      & > a {
+        color: var(--text_color);
+      }
+
+      &.ant-menu-item-active {
+        background-color: var(--aside_menu_hover);
+
+        & > a {
+          color: var(--text_hover);
+        }
+      }
+
+      &.ant-menu-item-selected {
+        color: var(--text_focus);
+        background-color: var(--aside_menu_focus);
+
+        &:after {
+          left: 0;
+          right: auto;
+        }
+      }
     }
   }
 }

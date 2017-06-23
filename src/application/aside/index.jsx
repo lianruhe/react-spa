@@ -84,14 +84,15 @@ export default class Aside extends Base {
       const {title, path} = route
       return (
         <Menu.Item key={path}>
-          {pathname === path ? title : <Link to={path}>{title}</Link>}
+          {pathname === path ? title : <Link to={path || ''}>{title}</Link>}
         </Menu.Item>
       )
     })
 
     return (
       <div id="aside">
-        <Menu theme="dark"
+        <h1 id="admin-title">管理系统</h1>
+        <Menu theme="light"
           // onClick={this.handleClick}
           openKeys={openKeys}
           selectedKeys={[pathname]}

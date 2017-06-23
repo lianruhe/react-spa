@@ -2,7 +2,7 @@
  *  路由配置信息
  */
 // import demo from './demo'
-import navtest from './navtest'
+// import navtest from './navtest'
 
 export default [{
   from: '/',
@@ -39,12 +39,16 @@ export default [{
     title: 'test',
     path: '/demo-test',
     getComponent: () => System.import('modules/demo/test')
+  }, {
+    title: 'iframe',
+    path: '/demo-iframe',
+    getComponent: () => System.import('modules/demo/iframe')
   }]
 }, {
   path: '/login',
   getComponent: () => System.import('modules/login')
 },
-  navtest,
+  // navtest,
 {
   getComponent: () => System.import('modules/404'),
   exact: false

@@ -1,55 +1,37 @@
 #header {
-  position: fixed;
-  z-index: 2;
   width: 100%;
   height: 50px;
   background-color: var(--header_bgc);
 
-  & h1 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 210px;
-    line-height: 50px;
-    font-size: 1rem;
-    color: var(--text_light);
-    text-align: center;
-    background-color: var(--title_bgc);
-  }
+  & ul {
+    float: right;
 
-  & .content {
-    margin-left: 210px;
+    & li {
+      float: left;
 
-    & ul {
-      float: right;
+      & a {
+        display: block;
+        line-height: 50px;
+        font-size: .9rem;
+        font-weight: bold;
+        padding: 0 1.5rem;
+        color: var(--text_light);
 
-      & li {
-        float: left;
+        &:hover {
+          color: var(--white);
+          background-color: var(--aside_bgc);
+        }
+      }
 
+      &.user {
+        & span {
+          padding-left: .3rem;
+        }
+      }
+
+      &.logout {
         & a {
-          display: block;
-          line-height: 50px;
-          font-size: .9rem;
-          font-weight: bold;
-          padding: 0 1.5rem;
-          color: var(--text_light);
-
-          &:hover {
-            color: var(--white);
-            background-color: var(--aside_bgc);
-          }
-        }
-
-        &.user {
-          & span {
-            padding-left: .3rem;
-          }
-        }
-
-        &.logout {
-          & a {
-            font-size: 1.1rem;
-          }
+          font-size: 1.1rem;
         }
       }
     }

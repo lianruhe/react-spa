@@ -15,9 +15,22 @@
   "light_blue": "#0C5AA9",
 
   "primary_color": "#108EE9",
-  "title_bgc": "#0B2552",
+  "title_bgc": "#072454",
+  "title_color": "#D9DDEC",
   "header_bgc": "#2F549A",
   "aside_bgc": "#0C3165",
   "aside_menu_bgc": "#0C3165",
-  "main_bgc": "#F6F6F6"
+  "aside_menu_hover": "#11285A",
+  "aside_menu_click": "#0F2451",
+  "aside_menu_focus": "#0F2451",
+  "main_bgc": "#F6F6F6",
+
+  "text_color": "#7C87AA",
+  "text_hover": "#C4CBE6",
+  "text_click": "#8E99BF",
+  "text_focus": "#DAE1FC",
+
+  "title_height": "90px",
+  "header_height": "50px",
+  "aside_width": "200px"
 }

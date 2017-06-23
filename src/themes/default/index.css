@@ -1,20 +1,21 @@
 @import "helpers";
 
-/*body {
+#aside {
   &::-webkit-scrollbar {
-    width: 0.3rem;
-    height: 0.3rem;
-    background-color: rgba(255, 255, 255, 0.3);
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.2);
   }
   &::-webkit-scrollbar-thumb {
-    background-color: #E7604A;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.3);
   }
   &::-webkit-scrollbar-button {
     height: 0;
     width: 0;
     background-color: transparent;
   }
-}*/
+}
 
 #app {
   height: 100%;
@@ -38,20 +39,19 @@
     }
 
     & #wrapper {
-      position: fixed;
-      z-index: 1;
-      box-sizing: border-box;
+      position: relative;
       height: 100%;
-      width: 100%;
-      padding-top: 50px;
-      padding-bottom: 0;
+      margin-left: var(--aside_width);
+      box-sizing: border-box;
 
       & #main {
-        height: 100%;
+        position: absolute;
+        top: var(--header_height);
+        bottom: 0;
+        left: 0;
+        right: 0;
         overflow: auto;
         box-sizing: border-box;
-        margin-left: 210px;
-        padding: .5rem;
         background-color: var(--main_bgc);
       }
     }
