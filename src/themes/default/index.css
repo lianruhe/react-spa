@@ -59,33 +59,27 @@
 
   /* 登录页面 */
   & #container.unauthed {
-    position: relative;
+    /*position: relative;
     width: 400px;
     min-width: 400px;
     height: auto;
     margin: 0 auto;
     padding-top: 300px;
-    overflow: visible;
-
-    & #header {
-      position: absolute;
-      width: 100%;
-      height: 50px;
-
-      & h1 {
-        width: 100%;
-      }
-
-      & .content {
-        display: none;
-      }
-    }
+    overflow: visible;*/
 
     & #wrapper {
-      position: relative;
-      width: 100%;
+      position: static;
+      width: 400px;
+      height: auto;
+      margin: 300px auto auto;
       box-shadow: 0 0 18px rgba(0, 0, 0, .3);
+
+      & #header {
+        display: none;
+      }
+
       & #main {
+        position: static;
         width: 100%;
         margin: 0;
         padding: 1rem 0 0 0;
