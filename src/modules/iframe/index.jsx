@@ -1,6 +1,8 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
+import MAP from './route-map'
+
 import 'styles/app/iframe.css'
 
 export default class Iframe extends React.Component {
@@ -9,8 +11,11 @@ export default class Iframe extends React.Component {
   }
 
   render () {
+    const { pathname } = this.props.location
+    const src = MAP[pathname]
+
     return (
-      <iframe src="http://www.baidu.com" id="extend-iframe" scrolling="no" frameBorder="0">{this.props.location.pathname}服务器错误！</iframe>
+      <iframe src={src} id="extend-iframe" frameBorder="0">{this.props.location.pathname}连接服务器错误！</iframe>
     )
   }
 }

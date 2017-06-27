@@ -2,18 +2,16 @@
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 200px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  width: var(--aside_width);
+  overflow: hidden;
   box-sizing: border-box;
   background: var(--aside_bgc) url(/static/images/aside-bgi.png) no-repeat bottom;
 
   & #admin-title {
-    line-height: 90px;
+    line-height: var(--title_height);
     font-size: 16px;
     color: var(--title_color);
     text-align: center;
-    margin-bottom: 10px;
     background-color: var(--title_bgc);
   }
 
@@ -50,10 +48,37 @@
         background-color: var(--aside_menu_focus);
 
         &:after {
-          left: 0;
           right: auto;
+          left: 0;
         }
       }
+    }
+  }
+
+  & #aside-menus {
+    position: absolute;
+    top: var(--title_height);
+    bottom: 0;
+    width: 100%;
+    padding-top: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border: none;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 6px;
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+    &::-webkit-scrollbar-button {
+      height: 0;
+      width: 0;
+      background-color: transparent;
     }
   }
 }

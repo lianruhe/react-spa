@@ -40,9 +40,13 @@ export default [{
     path: '/demo-test',
     getComponent: () => System.import('modules/demo/test')
   }, {
-    title: 'iframe',
-    path: '/demo-iframe',
-    getComponent: () => System.import('modules/demo/iframe')
+    title: '百度',
+    path: '/iframe-baidu',
+    getComponent: () => System.import('modules/iframe')
+  }, {
+    title: '本站',
+    path: '/iframe-table',
+    getComponent: () => System.import('modules/iframe')
   }]
 }, {
   path: '/login',

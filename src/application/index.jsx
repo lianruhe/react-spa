@@ -69,12 +69,11 @@ export default class App extends React.Component {
     const { progress, authorized } = this.props
     const { pathname } = this.state
     return (
-      <div id="container" className={authorized ? '' : 'unauthed'} >
-        {progress > 0 && progress <= 100 && <Progress id="progress" percent={progress} showInfo={false} strokeWidth={3} />}
-        {/* <Header userInfo={authorized} logout={this.logout} /> */}
-        <ConnectedRouter history={history}>
+      <ConnectedRouter history={history}>
+        <div id="container" className={authorized ? '' : 'unauthed'} >
+          {progress > 0 && progress <= 100 && <Progress id="progress" percent={progress} showInfo={false} strokeWidth={3} />}
           <div id="wrapper">
-            <Header userInfo={authorized} logout={this.logout} />
+            {pathname !== '/login' && <Header userInfo={authorized} logout={this.logout} />}
             <div id="main">
               <Switch>
                 {routeArray.map((route, index) => {
@@ -85,9 +84,9 @@ export default class App extends React.Component {
               </Switch>
             </div>
           </div>
-        </ConnectedRouter>
-        {pathname !== '/login' && <Aside pathname={pathname} />}
-      </div>
+          {pathname !== '/login' && <Aside pathname={pathname} />}
+        </div>
+      </ConnectedRouter>
     )
   }
 }

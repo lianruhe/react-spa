@@ -42,6 +42,7 @@ export default class Login extends Base {
     }
     return (
       <div className="ui-login">
+        <h1 className="login-title">管理系统</h1>
         <LoginForm handleLogin={this.login} />
       </div>
     )

@@ -1,26 +1,12 @@
 @import "helpers";
 
-#aside {
-  &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 6px;
-    background-color: rgba(255, 255, 255, 0.3);
-  }
-  &::-webkit-scrollbar-button {
-    height: 0;
-    width: 0;
-    background-color: transparent;
-  }
+html, body {
+  overflow: hidden;
 }
 
 #app {
   height: 100%;
   overflow: hidden;
-  background-color: var(--main_bgc);
 
   & #container {
     height: 100%;
@@ -59,31 +45,16 @@
 
   /* 登录页面 */
   & #container.unauthed {
-    /*position: relative;
-    width: 400px;
-    min-width: 400px;
-    height: auto;
-    margin: 0 auto;
-    padding-top: 300px;
-    overflow: visible;*/
 
     & #wrapper {
       position: static;
       width: 400px;
       height: auto;
-      margin: 300px auto auto;
+      margin: 250px auto auto;
       box-shadow: 0 0 18px rgba(0, 0, 0, .3);
-
-      & #header {
-        display: none;
-      }
 
       & #main {
         position: static;
-        width: 100%;
-        margin: 0;
-        padding: 1rem 0 0 0;
-        background-color: var(--white);
       }
     }
   }
