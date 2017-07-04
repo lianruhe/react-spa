@@ -21,7 +21,7 @@
   │   ├── themes               # Application-wide styles (generally settings)
   │   ├── index.ejs            # HTML template
   │   └── index.jsx            # Application bootstrap and rendering
-  └── tests                    # Unit tests(WIP...)
+  └── tests                    # Unit tests(WIP..)
   ```
 
 ## Usage
