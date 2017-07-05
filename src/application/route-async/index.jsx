@@ -6,7 +6,6 @@ import PropTypes from 'prop-types'
 export default class RouteAsync extends Base {
   static propTypes = {
     setPathname: PropTypes.func,
-    location: PropTypes.object,
     getComponent: PropTypes.func,
     path: PropTypes.string,
     from: PropTypes.string,
@@ -24,8 +23,8 @@ export default class RouteAsync extends Base {
 
   componentWillMount () {
     // 设置 pathname
-    const { setPathname, location } = this.props
-    setPathname(location.pathname)
+    const { setPathname, path } = this.props
+    setPathname(path)
   }
 
   getComponent () {
