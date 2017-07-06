@@ -50,6 +50,7 @@ export default [{
   }]
 }, {
   path: '/login',
+  asidePath: '/404',
   getComponent: () => System.import('modules/login')
 },
   // navtest,

@@ -8,6 +8,7 @@ export default class RouteAsync extends Base {
     setPathname: PropTypes.func,
     getComponent: PropTypes.func,
     path: PropTypes.string,
+    asidePath: PropTypes.string,
     from: PropTypes.string,
     to: PropTypes.string,
     exact: PropTypes.bool,
@@ -23,8 +24,8 @@ export default class RouteAsync extends Base {
 
   componentWillMount () {
     // 设置 pathname
-    const { setPathname, path } = this.props
-    setPathname(path)
+    const { setPathname, asidePath, path } = this.props
+    setPathname(asidePath || path)
   }
 
   getComponent () {
