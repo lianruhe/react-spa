@@ -118,6 +118,7 @@
     "yargs": "^7.1.0"
   },
   "theme": {
-    "primary-color": "#529ef2"
+    "primary-color": "#529ef2",
+    "icon-url": "\"/static/font/iconfont\""
   }
 }

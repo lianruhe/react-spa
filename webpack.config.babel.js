@@ -52,6 +52,24 @@ const postcssLoaders = [
   }
 ]
 
+const lesscssLoaders = [
+  'style-loader',
+  {
+    loader: 'css-loader',
+    options: {
+      importLoaders: 1,
+      sourceMap: true
+    }
+  },
+  {
+    loader: 'less-loader',
+    options: {
+      sourceMap: true,
+      modifyVars: config.pkg.theme
+    }
+  }
+]
+
 const webpackConfig = {
   target: 'web',
   resolve: {
@@ -130,20 +148,13 @@ const webpackConfig = {
           use: postcssLoaders.slice(1)
         }) : postcssLoaders
       },
-      // {
-      //   test: /\.less$/,
-      //   use: [
-      //     'style-loader',
-      //     {
-      //       loader: 'css-loader',
-      //       options: {
-      //         importLoaders: 1,
-      //         sourceMap: true
-      //       }
-      //     },
-      //     'less-loader'
-      //   ]
-      // },
+      {
+        test: /\.less$/,
+        use: __PROD__ ? ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: lesscssLoaders.slice(1)
+        }) : lesscssLoaders
+      },
       // {
       //   test: /\.(png|jpg|gif)(\?.*)?$/,
       //   loader: 'file-loader',
