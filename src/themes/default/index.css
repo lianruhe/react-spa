@@ -36,6 +36,7 @@ html, body {
 
   /* 登录页面 */
   & #container.unauthed {
+    display: block;
 
     & #wrapper {
       position: static;

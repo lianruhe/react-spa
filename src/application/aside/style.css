@@ -16,6 +16,7 @@
     background-color: transparent;
 
     &.ant-menu-vertical {
+      /*overflow: auto;*/
       background-color: var(--aside_bgc);
     }
 
@@ -62,13 +63,13 @@
 
   & #aside-menus {
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding-top: 10px;
     top: var(--title_height);
-    /*overflow-x: hidden;*/
+    bottom: 0;
+    padding-top: 10px;
+    /*width: 100%;
     overflow-y: auto;
-    border: none;
+    overflow-x: hidden;
+    border: none;*/
 
     &::-webkit-scrollbar {
       width: 8px;
