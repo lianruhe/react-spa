@@ -7,7 +7,7 @@
 export default [{
   from: '/',
   to: '/home',
-  exact: true   // 重定向
+  exact: true // 重定向
 }, {
   icon: 'appstore',
   title: '系统菜单',

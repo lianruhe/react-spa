@@ -9,13 +9,14 @@ import autobind from 'autobind-decorator'
 import { setAuth } from 'store/actions/core'
 
 import RouteAsync from './route-async'
-import Header from './header'
+// import Header from './header'
 import Aside from './aside'
 import routes from 'routes'
-import { Progress } from 'antd'
+import { Progress, Layout, Menu, Icon } from 'antd'
 
 // import 'antd/lib/style/index.css'
 import 'styles/index.css'
+const { Sider, Content, Header } = Layout
 
 const routeArray = []
 // 过滤出不用渲染的 route，整理成数组，后面 level 过滤也在这里做
@@ -71,11 +72,23 @@ export default class App extends React.Component {
     const isLogin = !authorized && pathname === '/login'
     return (
       <ConnectedRouter history={history}>
-        <div id="container" className={!isLogin ? '' : 'unauthed'} >
-          {progress > 0 && progress <= 100 && <Progress id="progress" percent={progress} showInfo={false} strokeWidth={3} />}
-          <div id="wrapper">
-            {!isLogin && <Header userInfo={authorized} logout={this.logout} />}
-            <div id="main">
+        <Layout
+          id="container"
+          className={`ant-layout-has-sider ${!isLogin ? '' : 'unauthed'}`} >
+          {
+            !isLogin &&
+            <Aside pathname={pathname} />
+          }
+          {
+            progress > 0 && progress <= 100 &&
+            <Progress id="progress" percent={progress} showInfo={false} strokeWidth={3} />
+          }
+          <Layout id="wrapper">
+            {
+              !isLogin &&
+              <Header userInfo={authorized} logout={this.logout} />
+            }
+            <Content id="main">
               <Switch>
                 {routeArray.map((route, index) => {
                   return (
@@ -83,10 +96,9 @@ export default class App extends React.Component {
                   )
                 })}
               </Switch>
-            </div>
-          </div>
-          {!isLogin && <Aside pathname={pathname} />}
-        </div>
+            </Content>
+          </Layout>
+        </Layout>
       </ConnectedRouter>
     )
   }

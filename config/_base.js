@@ -23,7 +23,7 @@ const config = {
   // Server Configuration
   // ----------------------------------
   server_host: '0.0.0.0', // binds to all hosts
-  server_port: process.env.PORT || 3000,
+  server_port: process.env.PORT || 3003,
 
   // ----------------------------------
   // Compiler Configuration

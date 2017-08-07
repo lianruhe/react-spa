@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Base from 'components/base'
 import { Link } from 'react-router-dom'
-import { Menu, Icon } from 'antd'
+import { Layout, Menu, Icon } from 'antd'
 import routes from 'routes'
 import './style.css'
 const SubMenu = Menu.SubMenu
+const { Sider } = Layout
 
 // 构造 openkeys 对象
 const openKeys = {}
@@ -90,19 +91,25 @@ export default class Aside extends Base {
     })
 
     return (
-      <div id="aside">
+      <Sider
+        // id="aside"
+        // trigger={null}
+        collapsible
+        collapsed={true} >
         <h1 id="admin-title">管理系统</h1>
-        <Menu theme="light"
+        <Menu
           id="aside-menus"
+          theme="light"
+          mode="inline"
           // onClick={this.handleClick}
-          openKeys={openKeys}
-          selectedKeys={[pathname]}
+          // openKeys={openKeys}
+          // selectedKeys={[pathname]}
           // style={{ width: 200 }}
-          onOpenChange={this.onOpenChange}
-          mode="inline">
+          // onOpenChange={this.onOpenChange}
+          >
           { domMenu(routes) }
         </Menu>
-      </div>
+      </Sider>
     )
   }
 }

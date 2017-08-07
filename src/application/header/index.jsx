@@ -2,14 +2,15 @@ import React from 'react'
 import pureRender from 'utils/pure-render'
 import PropTypes from 'prop-types'
 
-import { Icon } from 'antd'
+import { Icon, Layout } from 'antd'
 import Avatar from 'components/avatar'
 
 import './style.css'
+const { Header } = Layout
 
-const Header = ({ userInfo, logout }) => {
+const HeaderComponent = ({ userInfo, logout }) => {
   return (
-    <div id="header">
+    <Header id="header">
       <ul>
         <li className="user">
           <a href="javascript:;">
@@ -23,13 +24,13 @@ const Header = ({ userInfo, logout }) => {
           <a href="javascript:;" onClick={logout}><Icon type="logout" /></a>
         </li>
       </ul>
-    </div>
+    </Header>
   )
 }
 
-Header.propTypes = {
+HeaderComponent.propTypes = {
   userInfo: PropTypes.bool,
   logout: PropTypes.func
 }
 
-export default pureRender(Header)
+export default pureRender(HeaderComponent)

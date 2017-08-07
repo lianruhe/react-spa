@@ -25,20 +25,11 @@ html, body {
     }
 
     & #wrapper {
-      position: relative;
       height: 100%;
-      margin-left: var(--aside_width);
-      box-sizing: border-box;
+      overflow: hidden;
 
       & #main {
-        position: absolute;
-        top: var(--header_height);
-        bottom: 0;
-        left: 0;
-        right: 0;
         overflow: auto;
-        box-sizing: border-box;
-        background-color: var(--main_bgc);
       }
     }
   }
