@@ -8,9 +8,14 @@ import Avatar from 'components/avatar'
 import './style.css'
 const { Header } = Layout
 
-const HeaderComponent = ({ userInfo, logout }) => {
+const HeaderComponent = ({ userInfo, logout, collapsed, toggleCollapsed }) => {
   return (
     <Header id="header">
+      <Icon
+        className="trigger"
+        type={collapsed ? 'menu-unfold' : 'menu-fold'}
+        onClick={toggleCollapsed}
+      />
       <ul>
         <li className="user">
           <a href="javascript:;">
@@ -30,7 +35,9 @@ const HeaderComponent = ({ userInfo, logout }) => {
 
 HeaderComponent.propTypes = {
   userInfo: PropTypes.bool,
-  logout: PropTypes.func
+  logout: PropTypes.func,
+  collapsed: PropTypes.bool,
+  toggleCollapsed: PropTypes.func
 }
 
 export default pureRender(HeaderComponent)

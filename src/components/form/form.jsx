@@ -15,17 +15,18 @@ import React, {
 } from 'react'
 import PropTypes from 'prop-types'
 import autobind from 'autobind-decorator'
+import mapPropsToFields from './mapPropsToFields'
 
 import { Form } from 'antd'
 const FormItem = Form.Item
 
 export default Form.create({
-  mapPropsToFields: props => props.formData || {}
+  mapPropsToFields
 })(class FormClass extends Component {
   static propTypes = {
     form: PropTypes.object,
     items: PropTypes.array.isRequired,
-    handleSubmit: PropTypes.func.isRequired
+    handleSubmit: PropTypes.func
   }
 
   @autobind
@@ -33,7 +34,13 @@ export default Form.create({
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values)
+        // console.log('Received values of form: ', values)
+        // delete values['__opeation']
+        Object.keys(values).forEach(key => {
+          if (typeof values[key] === 'undefined' || values[key] === '') {
+            delete values[key]
+          }
+        })
         this.props.handleSubmit(values)
       }
     })
@@ -41,14 +48,15 @@ export default Form.create({
 
   render () {
     const { form, items, handleSubmit, ...props } = this.props
+    delete props.formData
     const { getFieldDecorator } = form
 
-    const formItemLayout = {
-      labelCol: { span: 3, offset: 1 },
-      wrapperCol: { span: 15 }
+    const formItemLayout = props.layout === 'vertical' ? null : {
+      labelCol: { span: 6, offset: 1 },
+      wrapperCol: { span: 17 }
     }
     return (
-      <Form onSubmit={this.handleSubmit} className="login-form" {...props}>
+      <Form onSubmit={this.handleSubmit} {...props}>
         {
           items.map((item, index) =>
             <FormItem key={index} label={item.label} {...formItemLayout} {...item.col}>

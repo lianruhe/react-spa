@@ -1,7 +1,22 @@
 #header {
   width: 100%;
   height: 50px;
+  padding: 0;
   background-color: var(--header_bgc);
+
+  & .trigger {
+    font-size: 18px;
+    line-height: 50px;
+    padding: 0 16px;
+    cursor: pointer;
+    color: var(--text_light);
+    vertical-align: top;
+    transition: color .3s;
+
+    &:hover {
+      color: var(--white);
+    }
+  }
 
   & ul {
     float: right;

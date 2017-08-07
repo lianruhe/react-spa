@@ -9,14 +9,13 @@ import autobind from 'autobind-decorator'
 import { setAuth } from 'store/actions/core'
 
 import RouteAsync from './route-async'
-// import Header from './header'
+import Header from './header'
 import Aside from './aside'
 import routes from 'routes'
-import { Progress, Layout, Menu, Icon } from 'antd'
+import { Progress, Layout } from 'antd'
 
-// import 'antd/lib/style/index.css'
 import 'styles/index.css'
-const { Sider, Content, Header } = Layout
+const { Content } = Layout
 
 const routeArray = []
 // 过滤出不用渲染的 route，整理成数组，后面 level 过滤也在这里做
@@ -48,7 +47,8 @@ export default class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      pathname: ''
+      pathname: '',
+      collapsed: false
     }
   }
 
@@ -66,9 +66,16 @@ export default class App extends React.Component {
     }
   }
 
+  @autobind
+  toggleCollapsed () {
+    this.setState({
+      collapsed: !this.state.collapsed
+    })
+  }
+
   render () {
     const { progress, authorized } = this.props
-    const { pathname } = this.state
+    const { pathname, collapsed } = this.state
     const isLogin = !authorized && pathname === '/login'
     return (
       <ConnectedRouter history={history}>
@@ -77,7 +84,7 @@ export default class App extends React.Component {
           className={`ant-layout-has-sider ${!isLogin ? '' : 'unauthed'}`} >
           {
             !isLogin &&
-            <Aside pathname={pathname} />
+            <Aside pathname={pathname} collapsed={collapsed} />
           }
           {
             progress > 0 && progress <= 100 &&
@@ -86,7 +93,7 @@ export default class App extends React.Component {
           <Layout id="wrapper">
             {
               !isLogin &&
-              <Header userInfo={authorized} logout={this.logout} />
+              <Header userInfo={authorized} logout={this.logout} collapsed={collapsed} toggleCollapsed={this.toggleCollapsed} />
             }
             <Content id="main">
               <Switch>

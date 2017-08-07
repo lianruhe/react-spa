@@ -1,10 +1,6 @@
 #aside {
-  position: fixed;
-  top: 0;
-  bottom: 0;
   width: var(--aside_width);
-  overflow: hidden;
-  box-sizing: border-box;
+  /*overflow: hidden;*/
   background: var(--aside_bgc) url(/static/images/aside-bgi.png) no-repeat bottom;
 
   & #admin-title {
@@ -16,7 +12,16 @@
   }
 
   & ul {
+    border: none;
     background-color: transparent;
+
+    &.ant-menu-vertical {
+      background-color: var(--aside_bgc);
+    }
+
+    &.ant-menu-inline {
+      overflow-x: hidden;
+    }
 
     & .ant-menu-submenu {
       & > .ant-menu-submenu-title {
@@ -57,11 +62,11 @@
 
   & #aside-menus {
     position: absolute;
-    top: var(--title_height);
     bottom: 0;
     width: 100%;
     padding-top: 10px;
-    overflow-x: hidden;
+    top: var(--title_height);
+    /*overflow-x: hidden;*/
     overflow-y: auto;
     border: none;
 

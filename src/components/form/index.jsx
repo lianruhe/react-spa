@@ -7,29 +7,30 @@
  * @param {object} formData     Form 初始化参数
  */
 import React from 'react'
-import pureRender from 'utils/pure-render'
+// import Base from 'components/base'
 import PropTypes from 'prop-types'
 
 import FormClass from './form'
 // import './style.css'
 
-const RcForm = ({ className, items, handleSubmit, ...props }) => {
-  let cls = 'component-form'
-  if (className) {
-    cls += (' ' + className)
+export default class RcForm extends React.Component {
+  static propTypes = {
+    className: PropTypes.string,
+    items: PropTypes.array.isRequired,
+    handleSubmit: PropTypes.func
   }
 
-  return (
-    <div className={cls}>
-      <FormClass items={items} handleSubmit={handleSubmit} {...props} />
-    </div>
-  )
-}
+  render () {
+    const { className, items, handleSubmit, ...props } = this.props
+    let cls = 'component-form'
+    if (className) {
+      cls += (' ' + className)
+    }
 
-RcForm.propTypes = {
-  className: PropTypes.string,
-  items: PropTypes.array.isRequired,
-  handleSubmit: PropTypes.func.isRequired
+    return (
+      <div className={cls}>
+        <FormClass wrappedComponentRef={inst => { this.formRef = inst }} items={items} handleSubmit={handleSubmit} {...props} />
+      </div>
+    )
+  }
 }
-
-export default pureRender(RcForm)

@@ -2,13 +2,38 @@
   padding: 8px;
   background-color: '#FFFFFF';
 
-  & .grid-operation-btn {
-    margin: 0 12px 8px 0;
+  & .grid-header {
+
+    & .grid-operation {
+      float: left;
+      margin-bottom: 8px;
+
+      & .grid-operation-btn {
+        margin-right: 12px;
+      }
+    }
+
+    & .grid-search {
+      float: right;
+
+      & > form {
+        display: inline-block;
+
+        & > .ant-form-item {
+          margin-bottom: 8px;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
   }
 
-  & .grid-search {
-    float: right;
-    min-width: 200px;
-    width: 25%;
+  & .ant-table-wrapper {
+    & th, & tr {
+      text-align: center;
+    }
   }
+
 }

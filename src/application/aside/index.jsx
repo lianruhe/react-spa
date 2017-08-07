@@ -30,7 +30,8 @@ Object.keys(openKeys).forEach(key => {
 
 export default class Aside extends Base {
   static propTypes = {
-    pathname: PropTypes.string
+    pathname: PropTypes.string,
+    collapsed: PropTypes.bool
   }
 
   constructor (props) {
@@ -70,7 +71,7 @@ export default class Aside extends Base {
   }
 
   render () {
-    const { pathname } = this.props
+    const { pathname, collapsed } = this.props
     const { openKeys } = this.state
 
     const domMenu = routes => routes.filter(route => route.title).map(route => {
@@ -92,20 +93,23 @@ export default class Aside extends Base {
 
     return (
       <Sider
-        // id="aside"
-        // trigger={null}
+        id="aside"
+        // breakpoint="lg"
+        trigger={null}
         collapsible
-        collapsed={true} >
+        collapsed={collapsed}
+        // collapsedWidth="0"
+        >
         <h1 id="admin-title">管理系统</h1>
         <Menu
           id="aside-menus"
           theme="light"
           mode="inline"
           // onClick={this.handleClick}
-          // openKeys={openKeys}
-          // selectedKeys={[pathname]}
+          openKeys={openKeys}
+          selectedKeys={[pathname]}
           // style={{ width: 200 }}
-          // onOpenChange={this.onOpenChange}
+          onOpenChange={this.onOpenChange}
           >
           { domMenu(routes) }
         </Menu>
