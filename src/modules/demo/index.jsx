@@ -7,6 +7,8 @@ import { bindActionCreators } from 'redux'
 import { setProgress, showProgress, hideProgress } from 'store/actions/core'
 import { Button } from 'antd'
 // import Grid from 'components/grid'
+import request from 'utils/request'
+import { APP_RES } from 'utils/config'
 import 'styles/app/home.css'
 
 @connect(state => ({
@@ -45,6 +47,24 @@ export default class Demo extends Base {
     }, 4000)
   }
 
+  @autobind
+  handleRequest () {
+    const body = new FormData()
+    body.append('name', 'test')
+    const cancelContentType = req => {
+      const headers = req.headers
+      delete headers['Content-Type']
+      return req
+    }
+    request(`${APP_RES.base}/api/test`, {
+      body,
+      method: 'post',
+      interceptors: {
+        request: [cancelContentType]
+      }
+    }).then(response => { console.log(response) })
+  }
+
   render () {
     return (
       <div id="ui-home">
@@ -56,6 +76,10 @@ export default class Demo extends Base {
         <div>
           进度条模拟:
           <Button className="progress-btn" type="primary" onClick={this.progressShow}>SHOWPROGRESS</Button>
+        </div>
+        <div>
+          请求测试:
+          <Button type="primary" onClick={this.handleRequest}>请求测试</Button>
         </div>
       </div>
     )
