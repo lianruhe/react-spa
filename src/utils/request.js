@@ -9,7 +9,8 @@ const defaultReq = {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   },
-  method: 'GET'
+  method: 'GET',
+  credentials: 'include'
 }
 
 const defaultInterceptors = {
@@ -24,23 +25,15 @@ function clonedInterceptors () {
   }
 }
 
-/**
- * 配置全局选项
- * 如果子选项为对象，则合并子选项
- * 否则直接覆盖
- * @param  {object} options 选项
- */
-export function configure (options) {
-  merge(defaultReq, options)
-}
-
-export function intercept ({ request, response } = {}, host = defaultInterceptors) {
+export function intercept ({ request, response } = {}) {
+  const result = clonedInterceptors()
   if (request) {
-    host.request = host.request.concat(request)
+    result.request = result.request.concat(request)
   }
   if (response) {
-    host.response = host.response.concat(response)
+    result.response = result.response.concat(response)
   }
+  return result
 }
 
 /**
@@ -84,19 +77,16 @@ async function request (url, options) {
     throw new ParameterException('URL is required!')
   }
 
-  const { interceptors, ...localReq } = options
-
-  let req = merge({}, defaultReq, localReq)
-  req.interceptors = clonedInterceptors()
-  intercept(interceptors, req.interceptors)
+  let { interceptors, ...req } = options
+  interceptors = intercept(interceptors)
 
   req = await parseReq(req)
-  req = (await iterateInterceptors({ req })).req
+  req = await iterateInterceptors(req, interceptors.request)
 
-  let res = await fetch(req.url, req)
-  res = (await iterateInterceptors({ req, res })).res
+  const res = await fetch(req.url, req)
 
-  const body = await getBody(res)
+  let body = await getBody(res)
+  body = await iterateInterceptors(body, interceptors.response)
 
   if (res.status >= 200 && res.status < 400) {
     return body
@@ -113,6 +103,15 @@ async function getBody (res) {
     return body
   }
 
+  if (type && type.indexOf('stream') !== -1) {
+    const blob = await res.blob()
+    const filename = res.headers.get('Content-Disposition')
+    return {
+      filename,
+      blob
+    }
+  }
+
   const body = await res.text()
 
   try {
@@ -123,8 +122,10 @@ async function getBody (res) {
 }
 
 function parseReq ({ url, query, params, body, ...req }) {
+  req = merge({}, defaultReq, req)
+
   if (body) {
-    if (typeof body === 'object') {
+    if (typeof body === 'object' && body.constructor !== FormData) {
       if (/^(POST|PUT|PATCH)$/i.test(req.method)) {
         body = JSON.stringify(body)
       } else {
@@ -157,9 +158,7 @@ function parseReq ({ url, query, params, body, ...req }) {
   return req
 }
 
-function iterateInterceptors (val) {
-  const interceptors = val.res ? val.req.interceptors.response : val.req.interceptors.request
-
+function iterateInterceptors (val, interceptors) {
   let i = 0
   async function iterator (val) {
     const interceptor = interceptors[i++]
