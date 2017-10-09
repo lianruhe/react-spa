@@ -20,7 +20,7 @@ export default [{
     getComponent: () => System.import('modules/404')
   }]
 },
-  ...demo,
+...demo,
 {
   path: '/login',
   getComponent: () => System.import('modules/login')

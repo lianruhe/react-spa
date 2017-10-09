@@ -99,7 +99,7 @@ export default class Aside extends Base {
         collapsible
         collapsed={collapsed}
         // collapsedWidth="0"
-        >
+      >
         <h1 id="admin-title">管理系统</h1>
         <Menu
           id="aside-menus"
@@ -110,7 +110,7 @@ export default class Aside extends Base {
           selectedKeys={[pathname]}
           // style={{ width: 200 }}
           onOpenChange={this.onOpenChange}
-          >
+        >
           { domMenu(routes) }
         </Menu>
       </Sider>

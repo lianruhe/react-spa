@@ -10,7 +10,6 @@
     "mock",
     "node_modules",
     "src",
-    "test/unit",
-    "package.json"
+    "test/unit"
   ]
 }

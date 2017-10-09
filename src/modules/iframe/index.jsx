@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import Iframe from 'react-iframe'
-import { getUrlParam } from 'utils/tools'
+import { getUrlParam } from 'opiece-utils/lib/tools'
 
 import { Spin } from 'antd'
 

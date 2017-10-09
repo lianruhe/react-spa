@@ -4,6 +4,8 @@ import { Provider } from 'react-redux'
 import createStore from './store'
 import { AppContainer } from 'react-hot-loader'
 
+import 'antd/dist/antd.less'
+
 // ========================================================
 // Store Instantiation
 // ========================================================

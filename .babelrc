@@ -15,8 +15,10 @@
     "add-module-exports",
     "syntax-dynamic-import",
     "transform-class-properties",
+    "transform-decorators-legacy",
     "transform-object-rest-spread",
-    "transform-runtime"
+    "transform-runtime",
+    "react-hot-loader/babel"
    ],
    "comments": false
 }

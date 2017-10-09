@@ -77,7 +77,7 @@ const webpackConfig = {
     // descriptionFiles: ['package.json'],
     // mainFields: ['main', 'browser'],
     // mainFiles: ['index'],
-    extensions: ['.js', '.jsx', '.json', '.css'],
+    extensions: ['.js', '.jsx', '.json', '.css', '.less'],
     // enforceExtension: false,
     // enforceModuleExtension: false,
     alias: {
