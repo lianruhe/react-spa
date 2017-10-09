@@ -18,7 +18,14 @@
     "transform-decorators-legacy",
     "transform-object-rest-spread",
     "transform-runtime",
-    "react-hot-loader/babel"
+    "react-hot-loader/babel",
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": true
+      }
+    ]
    ],
    "comments": false
 }

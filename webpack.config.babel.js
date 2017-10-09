@@ -11,7 +11,7 @@ const debug = _debug('app:webpack')
 
 debug('Create configuration.')
 
-const appEntry = ['whatwg-fetch', paths.src('index.jsx')]
+const appEntry = [paths.src('index.jsx')]
 if (__DEV__) {
   appEntry.unshift(
     'react-hot-loader/patch',
