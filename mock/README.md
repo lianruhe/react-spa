@@ -18,7 +18,7 @@ Now if you go to http://localhost:3000/posts/1, you'll get
 Create a routes.json file. Pay attention to start every route with /.
 ```
   {
-    "/api/": "/",
+    "/api/*": "/$1",
     "/blog/:resource/:id/show": "/:resource/:id",
     "/blog/:category": "/posts?category=:category"
   }

@@ -1,7 +1,7 @@
 {
   "login": {
-    "username": "aaa",
-    "password": "aaa",
+    "username": "admin@ndtest",
+    "password": "123456",
     "remember": true
   },
   "list": {
