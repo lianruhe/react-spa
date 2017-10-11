@@ -1,4 +1,9 @@
 .ui-login {
+  width: 400px;
+  margin: 250px auto auto;
+  background: white;
+  box-shadow: 0 0 18px rgba(0, 0, 0, .3);
+
   & .login-title {
     line-height: 50px;
     font-size: 16px;

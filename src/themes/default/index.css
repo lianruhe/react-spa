@@ -44,7 +44,7 @@ html, body {
   }
 
   /* 登录页面 */
-  & #container.unauthed {
+  /*& #container.unauthed {
     display: block;
 
     & #wrapper {
@@ -58,5 +58,5 @@ html, body {
         position: static;
       }
     }
-  }
+  }*/
 }

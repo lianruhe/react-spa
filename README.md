@@ -36,8 +36,8 @@ npm run dev
 # serve with hot reload at localhost:3000 and api serve at localhost:3001
 npm run mock
 
-# eslint, stylelint, unit and e2e test
-npm test (wip...)
+# eslint, stylelint, unit test
+npm run test (wip...)
 
 # compile files for production
 npm run compile
