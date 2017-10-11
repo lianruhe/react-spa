@@ -96,13 +96,15 @@ export default class App extends React.Component {
               <Header userInfo={authorized} logout={this.logout} collapsed={collapsed} toggleCollapsed={this.toggleCollapsed} />
             }
             <Content id="main">
-              <Switch>
-                {routeArray.map((route, index) => {
-                  return (
-                    <RouteAsync {...route} key={index} authorized={authorized} setPathname={this.setPathname} />
-                  )
-                })}
-              </Switch>
+              <div id="main-wrapper">
+                <Switch>
+                  {routeArray.map((route, index) => {
+                    return (
+                      <RouteAsync {...route} key={index} authorized={authorized} setPathname={this.setPathname} />
+                    )
+                  })}
+                </Switch>
+              </div>
             </Content>
           </Layout>
         </Layout>

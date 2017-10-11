@@ -15,11 +15,6 @@
     border: none;
     background-color: transparent;
 
-    &.ant-menu-vertical {
-      /*overflow: auto;*/
-      background-color: var(--aside_bgc);
-    }
-
     &.ant-menu-inline {
       overflow-x: hidden;
     }
@@ -59,6 +54,10 @@
         }
       }
     }
+  }
+
+  & .ant-menu-vertical .ant-menu-sub {
+    background-color: var(--aside_bgc);
   }
 
   & #aside-menus {

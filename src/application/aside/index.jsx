@@ -47,18 +47,20 @@ export default class Aside extends Base {
   }
 
   onOpenChange = (openKeys) => {
-    const state = this.state
-    const latestOpenKey = openKeys.find(key => !(state.openKeys.indexOf(key) > -1))
-    const latestCloseKey = state.openKeys.find(key => !(openKeys.indexOf(key) > -1))
+    this.setState({ openKeys })
 
-    let nextOpenKeys = []
-    if (latestOpenKey) {
-      nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey)
-    }
-    if (latestCloseKey) {
-      nextOpenKeys = this.getAncestorKeys(latestCloseKey)
-    }
-    this.setState({ openKeys: nextOpenKeys })
+    // const state = this.state
+    // const latestOpenKey = openKeys.find(key => !(state.openKeys.indexOf(key) > -1))
+    // const latestCloseKey = state.openKeys.find(key => !(openKeys.indexOf(key) > -1))
+    //
+    // let nextOpenKeys = []
+    // if (latestOpenKey) {
+    //   nextOpenKeys = this.getAncestorKeys(latestOpenKey).concat(latestOpenKey)
+    // }
+    // if (latestCloseKey) {
+    //   nextOpenKeys = this.getAncestorKeys(latestCloseKey)
+    // }
+    // this.setState({ openKeys: nextOpenKeys })
   }
 
   componentWillReceiveProps (nextProps) {
@@ -105,11 +107,10 @@ export default class Aside extends Base {
           id="aside-menus"
           theme="light"
           mode="inline"
-          // onClick={this.handleClick}
-          openKeys={openKeys}
-          selectedKeys={[pathname]}
           // style={{ width: 200 }}
+          openKeys={openKeys}
           onOpenChange={this.onOpenChange}
+          selectedKeys={[pathname]}
         >
           { domMenu(routes) }
         </Menu>
