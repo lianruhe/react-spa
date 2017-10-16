@@ -1,7 +1,7 @@
 import React from 'react'
 import Base from 'components/base'
 // import { Table, Button } from 'antd'
-import Grid from 'components/grid'
+import Grid from 'opiece-react-components/lib/grid'
 import request from 'utils/request'
 
 export default class tableDemo extends Base {
@@ -107,12 +107,12 @@ export default class tableDemo extends Base {
             title: '删除',
             handleClick: () => { console.log('del') }
           }]}
-          search={{
-            placeholder: '请输入名称',
-            onSearch: val => {
-              console.log(val)
-            }
-          }}
+          // search={{
+          //   placeholder: '请输入名称',
+          //   onSearch: val => {
+          //     console.log(val)
+          //   }
+          // }}
         />
       </div>
     )

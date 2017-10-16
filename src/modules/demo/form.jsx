@@ -1,7 +1,7 @@
 import React from 'react'
 import pureRender from 'utils/pure-render'
 // import PropTypes from 'prop-types'
-import Form from 'components/form'
+import Form from 'opiece-react-components/lib/form'
 import { Input, Icon, Button } from 'antd'
 // import './style.css'
 
