@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions'
 import { SET_PROGRESS, SET_AUTH, SET_USER } from '../constants/action-types'
-import request from 'utils/request'
+import request from 'opiece-utils/lib/request'
 import { APP_RES } from 'utils/config'
 import { LOGIN_API } from '../constants/apis'
 
