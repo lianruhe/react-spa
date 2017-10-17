@@ -33,7 +33,7 @@ const APP_RES = {
  * @constant {number} ENV
  */
 const ENV = (() => {
-  if (window.__DEV__) {
+  if (__DEV__) {
     switch (LOC_HOSTNAME) {
       case 'localhost':
         return SIMULATION
