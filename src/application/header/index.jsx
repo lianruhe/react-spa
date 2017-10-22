@@ -2,8 +2,8 @@ import React from 'react'
 import pureRender from 'utils/pure-render'
 import PropTypes from 'prop-types'
 
-import { Icon, Layout } from 'antd'
-import Avatar from 'components/avatar'
+import { Icon, Layout, Avatar } from 'antd'
+// import Avatar from 'components/avatar'
 
 import './style.css'
 const { Header } = Layout
@@ -19,9 +19,10 @@ const HeaderComponent = ({ userInfo, logout, collapsed, toggleCollapsed }) => {
       <ul>
         <li className="user">
           <a href="javascript:;">
-            <Avatar className="circle" size="small">
+            {/* <Avatar className="circle" size="small">
               <img src="static/images/wx@2x.png" />
-            </Avatar>
+            </Avatar> */}
+            <Avatar className="avatar" src="static/images/wx@2x.png" />
             <span>管理员</span>
           </a>
         </li>

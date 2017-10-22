@@ -39,8 +39,9 @@
       }
 
       &.user {
-        & span {
-          padding-left: .3rem;
+        & .avatar {
+          vertical-align: middle;
+          margin-right: 3px;
         }
       }
 
