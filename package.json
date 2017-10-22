@@ -20,7 +20,7 @@
     "push": "bash ./cli/push.sh"
   },
   "dependencies": {
-    "antd": "^2.13.4",
+    "antd": "^2.13.6",
     "autobind-decorator": "^2.1.0",
     "fast-deep-equal": "^1.0.0",
     "history": "^4.6.1",
