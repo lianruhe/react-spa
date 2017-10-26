@@ -29,12 +29,20 @@
         line-height: 50px;
         font-size: .9rem;
         font-weight: bold;
-        padding: 0 1.5rem;
+        padding: 0 12px;
         color: var(--text_light);
 
         &:hover {
           color: var(--white);
           background-color: var(--aside_bgc);
+        }
+      }
+
+      &.notice {
+        & i {
+          font-size: 20px;
+          padding: 1px;
+          margin-bottom: 5px;
         }
       }
 
@@ -48,8 +56,29 @@
       &.logout {
         & a {
           font-size: 1.1rem;
+          padding: 0 18px;
         }
       }
+    }
+  }
+}
+
+/* 弹出层样式 */
+.header-popover {
+  & .ant-popover-arrow {
+    &:after {
+      border-bottom-color: var(--aside_bgc) !important;
+    }
+  }
+
+  & .ant-popover-inner-content {
+    padding: 3px 0;
+    color: var(--white);
+    background-color: var(--aside_bgc);
+
+    & p {
+      padding: 0 10px;
+      line-height: 28px;
     }
   }
 }
