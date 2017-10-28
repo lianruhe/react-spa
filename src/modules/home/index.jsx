@@ -5,7 +5,7 @@ import autobind from 'autobind-decorator'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { setProgress, showProgress, hideProgress } from 'store/actions/core'
-// import { Button } from 'antd'
+import { Row, Col } from 'antd'
 import 'styles/app/home.css'
 
 @connect(state => ({
@@ -46,9 +46,17 @@ export default class Home extends Base {
 
   render () {
     return (
-      <div id="ui-home">
-        home page!
-      </div>
+      <Row id="ui-home" type="flex" justify="center" align="middle">
+        <Col>
+          <img src="static/images/home-welcome.jpg" width="300px" />
+          <span className="text">试
+            <span className="text-a">运</span>
+            <span className="text-b">行</span>
+            <span className="text-c">中...</span>
+          </span>
+          {/* <h2>试运行...</h2> */}
+        </Col>
+      </Row>
     )
   }
 }

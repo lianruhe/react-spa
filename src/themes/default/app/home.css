@@ -1,4 +1,34 @@
 #ui-home {
+  height: 100%;
+  background-color: var(--main_bgc);
+
+  & h2 {
+    text-align: center;
+    font-size: 28px;
+    color: var(--text_color);
+  }
+
+  & .text {
+    padding: 0 6px;
+    color: #43cbe6;
+    font-size: 42px;
+    font-style: italic;
+    font-weight: bold;
+    font-family: arial,tahoma,"Microsoft YaHei",\5b8b\4f53,sans-serif;
+
+    & .text-a {
+      color: #53cfe9;
+    }
+
+    & .text-b {
+      color: #73d6ef;
+    }
+
+    & .text-c {
+      color: #8edcf3;
+    }
+  }
+
   & .progress-btn {
     margin: .5rem 3rem;
   }
