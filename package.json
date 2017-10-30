@@ -24,6 +24,7 @@
     "autobind-decorator": "^2.1.0",
     "fast-deep-equal": "^1.0.0",
     "history": "^4.6.1",
+    "immutable": "^3.7.6",
     "json-schema-traverse": "^0.3.1",
     "lodash": "^4.17.4",
     "opiece-react-components": "0.0.5",
