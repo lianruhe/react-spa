@@ -49,10 +49,10 @@ export default class Home extends Base {
       <Row id="ui-home" type="flex" justify="center" align="middle">
         <Col>
           <img src="static/images/home-welcome.jpg" width="300px" />
-          <span className="text">试
-            <span className="text-a">运</span>
+          <span className="text">欢迎回来
+            {/* <span className="text-a">运</span>
             <span className="text-b">行</span>
-            <span className="text-c">中...</span>
+            <span className="text-c">中...</span> */}
           </span>
           {/* <h2>试运行...</h2> */}
         </Col>

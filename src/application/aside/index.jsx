@@ -102,7 +102,9 @@ export default class Aside extends Base {
         collapsed={collapsed}
         // collapsedWidth="0"
       >
-        <h1 id="admin-title">管理系统</h1>
+        <Link to="/" style={{textDecorationLine: 'none'}}>
+          <h1 id="admin-title" title="管理系统">管理系统</h1>
+        </Link>
         <Menu
           id="aside-menus"
           theme="light"
