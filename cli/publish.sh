@@ -15,7 +15,7 @@ cd dist
 git init
 git add -A
 git commit -m "$MESSAGE"
-git push -f git@github.com:lianruhe/react-spa.git dev:gh-pages
+git push -f git@github.com:lianruhe/react-spa.git master:gh-pages
 
 # back to root
 cd ..

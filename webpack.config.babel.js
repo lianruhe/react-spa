@@ -35,7 +35,9 @@ const postcssLoaders = [
       plugins: function () {
         return [
           require('postcss-import'),
-          require('postcss-url'),
+          require('postcss-url')({
+            url: asset => `${config.compiler_public_path}${asset.url}`
+          }),
           // require('precss'),
           require('postcss-cssnext')({
             features: {
@@ -59,6 +61,19 @@ const lesscssLoaders = [
     options: {
       importLoaders: 1,
       sourceMap: true
+    }
+  },
+  {
+    loader: 'postcss-loader',
+    options: {
+      sourceMap: true,
+      plugins: function () {
+        return [
+          require('postcss-url')({
+            url: asset => `${config.compiler_public_path}${asset.url}`
+          })
+        ]
+      }
     }
   },
   {
@@ -119,8 +134,8 @@ const webpackConfig = {
     vendor: config.compiler_vendor
   },
   output: {
-    path: paths.dist(__PROD__ ? 'static' : ''),
-    publicPath: config.compiler_public_path,
+    path: paths.dist(),
+    publicPath: `${config.compiler_public_path}/`,
     filename: `[name].[${config.compiler_hash_type}].js`,
     chunkFilename: `[id].[${config.compiler_hash_type}].js`
   },
@@ -159,7 +174,7 @@ const webpackConfig = {
       //   test: /\.(png|jpg|gif)(\?.*)?$/,
       //   loader: 'file-loader',
       //   options: {
-      //     name: '[name].[ext]?[hash:7]'
+      //     name: '[path][name].[ext]?[hash:7]'
       //   }
       // },
       {
@@ -179,7 +194,7 @@ const webpackConfig = {
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: `${__PROD__ ? '../' : ''}index.html`,
+      filename: 'index.html',
       template: paths.src('index.ejs'),
       title: `${config.pkg.name} - ${config.pkg.description}`,
       hash: false,
