@@ -16,7 +16,7 @@
     "clean": "node ./cli/clean",
     "compile": "cross-env NODE_ENV=production DEBUG=app* node ./cli/compile",
     "build": "npm run test && npm run clean && npm run compile",
-    "docs": "bash ./cli/docs.sh",
+    "publish": "bash ./cli/publish.sh",
     "push": "bash ./cli/push.sh"
   },
   "dependencies": {
