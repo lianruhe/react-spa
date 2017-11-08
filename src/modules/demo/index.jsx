@@ -6,10 +6,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { setProgress, showProgress, hideProgress } from 'store/actions/core'
 import { Button } from 'antd'
+import QueueAnim from 'rc-queue-anim'
 // import Grid from 'opiece-react-components/lib/grid'
 import request from 'utils/request'
 import { APP_RES } from 'utils/config'
-import 'styles/app/home.css'
+import 'styles/app/demo.css'
 
 @connect(state => ({
   progress: state.core.progress
@@ -22,6 +23,10 @@ export default class Demo extends Base {
     setProgress: PropTypes.func,
     showProgress: PropTypes.func,
     hideProgress: PropTypes.func
+  }
+
+  state = {
+    show: true
   }
 
   @autobind
@@ -67,19 +72,57 @@ export default class Demo extends Base {
 
   render () {
     return (
-      <div id="ui-home">
-        <div>
-          进度条控制：
-          <Button className="progress-btn" type="primary" onClick={this.progressUp}>+</Button>
-          <Button className="progress-btn" type="primary" onClick={this.progressDown}>-</Button>
+      <div id="ui-demo">
+        <div className="demo-box">
+          <div className="demo-title">
+            进度条控制
+          </div>
+          <div className="demo-content">
+            <Button className="progress-btn" type="primary" onClick={this.progressUp}>进度条++</Button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <Button className="progress-btn" type="primary" onClick={this.progressDown}>进度条--</Button>
+          </div>
+          <div className="demo-content">
+            <Button className="progress-btn" type="primary" onClick={this.progressShow}>进度条加载</Button>
+          </div>
         </div>
-        <div>
-          进度条模拟:
-          <Button className="progress-btn" type="primary" onClick={this.progressShow}>SHOWPROGRESS</Button>
+        <div className="demo-box">
+          <div className="demo-title">
+            请求测试
+          </div>
+          <div className="demo-content">
+            <Button type="primary" onClick={this.handleRequest}>请求</Button>
+          </div>
         </div>
-        <div>
-          请求测试:
-          <Button type="primary" onClick={this.handleRequest}>请求测试</Button>
+        <div className="demo-box">
+          <div className="demo-title">
+            动画
+          </div>
+          <div className="demo-content">
+            <p className="buttons">
+              <Button type="primary" onClick={ () => {
+                this.setState({
+                  show: !this.state.show
+                })
+              }}>切换</Button>
+            </p>
+            <QueueAnim className="demo-content"
+              animConfig={[
+                { opacity: [1, 0], translateY: [0, 50] },
+                { opacity: [1, 0], translateY: [0, -50] }
+              ]}>
+              {this.state.show ? [
+                <div className="demo-thead" key="a" />,
+                <div className="demo-tbody" key="b">
+                  <ul>
+                    <li />
+                    <li />
+                    <li />
+                  </ul>
+                </div>
+              ] : null}
+            </QueueAnim>
+          </div>
         </div>
       </div>
     )

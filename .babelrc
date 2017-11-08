@@ -1,11 +1,9 @@
 {
   "presets": [
-    "es2015",
-    "stage-2",
     ["env", {
-      "modules": false,
       "targets": {
-        "ie9": true,
+        "ie10": true,
+        "chrome": 45
       },
       "uglify": true,
     }],
