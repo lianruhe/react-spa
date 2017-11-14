@@ -2,19 +2,20 @@ import React from 'react'
 import pureRender from 'utils/pure-render'
 import PropTypes from 'prop-types'
 
-import { Icon, Layout, Avatar, Badge, Popover } from 'antd'
+import { Icon, Layout, Avatar, Badge, Popover, Tabs } from 'antd'
 // import Avatar from 'components/avatar'
 
 import './style.css'
 const { Header } = Layout
+const TabPane = Tabs.TabPane
 
 const HeaderComponent = ({ userInfo, logout, collapsed, toggleCollapsed }) => {
   const noticeMenu = (
-    <div>
-      {/* <p>机构：{swjgmc}</p>
-      <p>身份：{sfmc}</p> */}
-      <p>暂无新消息</p>
-    </div>
+    <Tabs defaultActiveKey="1" className="notice-tabs" onChange={() => {}}>
+      <TabPane tab="通知（5）" key="1">你已查看所有通知</TabPane>
+      <TabPane tab="消息（3）" key="2">您已读完所有消息</TabPane>
+      <TabPane tab="代办（6）" key="3">你已完成所有待办</TabPane>
+    </Tabs>
   )
 
   const userInfoMenu = (
@@ -33,10 +34,10 @@ const HeaderComponent = ({ userInfo, logout, collapsed, toggleCollapsed }) => {
       />
       <ul>
         <li className="notice">
-          <Popover overlayClassName="header-popover" placement="bottomRight" content={noticeMenu} trigger="hover">
+          <Popover placement="bottomRight" content={noticeMenu} trigger="click">
             <a href="javascript:;">
               <Badge count={6}>
-                <Icon type="notification" />
+                <Icon type="bell" />
               </Badge>
             </a>
           </Popover>

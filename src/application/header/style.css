@@ -82,3 +82,19 @@
     }
   }
 }
+
+.ant-popover-inner-content {
+  padding: 0;
+  margin-bottom: 0;
+
+  & .ant-tabs-bar {
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  & .ant-tabs-content {
+    min-height: 200px;
+    line-height: 200px;
+    text-align: center;
+    font-size: 14px;
+  }
+}
