@@ -26,7 +26,8 @@ export default class Demo extends Base {
   }
 
   state = {
-    show: true
+    show: true,
+    loading: false
   }
 
   @autobind
@@ -68,6 +69,20 @@ export default class Demo extends Base {
         request: [cancelContentType]
       }
     }).then(response => { console.log(response) })
+  }
+
+  downloadFile (url) {
+    try {
+      const elemIF = document.createElement('iframe')
+      elemIF.src = url
+      elemIF.style.display = 'none'
+      elemIF.onload = () => {
+        console.log('下载文件好像不行～ ～')
+      }
+      document.body.appendChild(elemIF)
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   render () {
@@ -122,6 +137,15 @@ export default class Demo extends Base {
                 </div>
               ] : null}
             </QueueAnim>
+          </div>
+        </div>
+        <div className="demo-box">
+          <div className="demo-title">
+            下载文件
+          </div>
+          <div className="demo-content">
+            {/* <Button type="primary" onClick={() => this.downloadFile('http://155.16.142.11:100/soft/browser/chrome/AxureRP_for_chorme_0_6_2.crx')}>下载</Button> */}
+            <Button type="primary" onClick={() => this.downloadFile('/static/font/iconfont.woff')}>下载</Button>
           </div>
         </div>
       </div>
