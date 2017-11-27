@@ -88,7 +88,7 @@ export default class Aside extends Base {
       const {title, path} = route
       return (
         <Menu.Item key={path}>
-          {pathname === path ? title : <Link to={path}>{title}</Link>}
+          {pathname === path ? <span>{title}</span> : <Link to={path}><span>{title}</span></Link>}
         </Menu.Item>
       )
     })
