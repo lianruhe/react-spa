@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux'
 import { setProgress, showProgress, hideProgress } from 'store/actions/core'
 import { Button } from 'antd'
 import QueueAnim from 'rc-queue-anim'
+// import download from 'download'
 // import Grid from 'opiece-react-components/lib/grid'
 import request from 'utils/request'
 import { APP_RES } from 'utils/config'
@@ -79,10 +80,23 @@ export default class Demo extends Base {
       elemIF.onload = () => {
         console.log('下载文件好像不行～ ～')
       }
+      elemIF.onloadeddata = () => {
+        console.log('onloadeddata～ ～')
+      }
+      elemIF.ownerDocument.onloadeddata = () => {
+        console.log('onloadeddata～ ～')
+      }
+      elemIF.ownerDocument.onreadystatechange = () => {
+        console.log(1111, elemIF.ownerDocument.readyState)
+      }
       document.body.appendChild(elemIF)
     } catch (e) {
       console.log(e)
     }
+
+    // download(url, 'dist').then(() => {
+    //   console.log('done!')
+    // })
   }
 
   render () {

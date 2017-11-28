@@ -23,6 +23,7 @@
     "antd": "^2.13.8",
     "autobind-decorator": "^2.1.0",
     "core-js": "^2.5.1",
+    "download": "^6.2.5",
     "fast-deep-equal": "^1.0.0",
     "history": "^4.6.1",
     "immutable": "^3.7.6",

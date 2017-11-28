@@ -260,7 +260,7 @@ if (!__TEST__) {
   webpackConfig.plugins.push(
     new FaviconsWebpackPlugin({
       logo: paths.src('static/favicon.png'),
-      prefix: 'icons-[hash:7]/',
+      prefix: 'static/favicon-[hash:7]/',
       persistentCache: true,
       icons: {
         android: false,
