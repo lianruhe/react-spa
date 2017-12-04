@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import Iframe from 'react-iframe'
 import PropTypes from 'prop-types'
 // import { getUrlParam } from 'opiece-utils/lib/tools'
-import MAP from './route-map'
+import urlParse from './url-parse'
 
 import { Spin } from 'antd'
 
@@ -33,7 +33,7 @@ export default class IframeComponent extends PureComponent {
     // }
 
     const { pathname } = this.props.location
-    const src = MAP[pathname]
+    const src = urlParse(pathname)
 
     return (
       <div id="iframe-wrapper">
