@@ -9,7 +9,7 @@ import { Button } from 'antd'
 import QueueAnim from 'rc-queue-anim'
 // import download from 'download'
 // import Grid from 'opiece-react-components/lib/grid'
-import request from 'utils/request'
+import request from 'opiece-utils/lib/request'
 import { APP_RES } from 'utils/config'
 import 'styles/app/demo.css'
 

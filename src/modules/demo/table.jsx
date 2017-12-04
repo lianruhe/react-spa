@@ -2,7 +2,7 @@ import React from 'react'
 import Base from 'components/base'
 // import { Table, Button } from 'antd'
 import Grid from 'opiece-react-components/lib/grid'
-import request from 'utils/request'
+import request from 'opiece-utils/lib/request'
 
 export default class tableDemo extends Base {
   state = {
