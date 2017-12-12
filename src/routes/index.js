@@ -1,6 +1,14 @@
 /**
  *  路由配置信息
+ *  title   [string]    路由名称
+ *  icon    [string]    字体图标
+ *  path    [string]    路径
+ *  from    [string]    重定向始
+ *  to      [string]    重定向到
+ *  exact   [bool]      绝对匹配
+ *  getComponent  [string]    获得模块
  */
+
 import demo from './demo'
 
 export default [{
