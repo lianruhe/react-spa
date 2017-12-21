@@ -2,6 +2,7 @@ import React from 'react'
 import Base from 'components/base'
 import { Redirect, Route } from 'react-router'
 import PropTypes from 'prop-types'
+import PageLoading from '../../components/page-loading'
 
 export default class RouteAsync extends Base {
   static propTypes = {
@@ -18,11 +19,14 @@ export default class RouteAsync extends Base {
   constructor (props) {
     super(props)
     this.state = {
-      component: undefined
+      component: PageLoading
     }
   }
 
   componentWillMount () {
+    // 获取组件
+    this.getComponent()
+
     // 设置 pathname
     const { setPathname, asidePath, path } = this.props
     setPathname(asidePath || path)
@@ -61,15 +65,15 @@ export default class RouteAsync extends Base {
     }
 
     const { component } = this.state
-    const render = props => {
-      if (!component) {
-        this.getComponent()
-      }
-      return component ? React.createElement(component, props) : null
-    }
+    // const render = props => {
+    //   if (!component) {
+    //     this.getComponent()
+    //   }
+    //   return component ? React.createElement(component, props) : null
+    // }
 
     return (
-      <Route path={path} exact={exact} render={render} />
+      <Route path={path} exact={exact} component={component} />
     )
   }
 }
