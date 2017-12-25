@@ -51,7 +51,7 @@ export default class RouteAsync extends Base {
     const { from, to, path, authorized, exact = true } = this.props
 
     // 重定向
-    if (from && to) {
+    if (from || to) {
       return (
         <Redirect from={from} to={to} />
       )
@@ -60,7 +60,7 @@ export default class RouteAsync extends Base {
     // 登录认证验证
     if (!authorized && path !== '/login') {
       return (
-        <Redirect exact="false" from={path} to="/login" />
+        <Redirect exact={false} to="/login" />
       )
     }
 
