@@ -5,7 +5,7 @@
 
   ```
   .
-  ├── cli                      # Compile, etc. Some scripts
+  ├── cli                      # Scripts for compile, clean, etc.
   ├── config                   # Project environment-specific configuration settings
   ├── mock                     # Mock data API
   ├── src                      # Application source code
@@ -28,7 +28,7 @@
 
 ```bash
 # install dependencies
-npm run gfw
+npm install
 
 # serve with hot reload at localhost:3000
 npm run dev
