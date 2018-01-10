@@ -3,6 +3,7 @@ import Base from 'components/base'
 // import { Table, Button } from 'antd'
 import Grid from 'opiece-react-components/lib/grid'
 import request from 'opiece-utils/lib/request'
+import { message, Popconfirm } from 'antd'
 
 export default class tableDemo extends Base {
   state = {
@@ -35,7 +36,12 @@ export default class tableDemo extends Base {
         results: 10,
         ...params
       },
-      type: 'json'
+      interceptors: {
+        request: [req => {
+          delete req.credentials
+          return req
+        }]
+      }
     }).then((data) => {
       const pagination = { ...this.state.pagination }
       // Read total count from server
@@ -49,6 +55,7 @@ export default class tableDemo extends Base {
     })
   }
   handleEdit (val) {
+    message.warning('Click Edit!')
     console.log('eidt', val)
   }
   componentDidMount () {
@@ -78,14 +85,16 @@ export default class tableDemo extends Base {
       key: 'action',
       render: (text, record) => (
         <span>
-          <a href="javascript:;" onClick={() => { handleEdit(record) }}>Edit</a>
+          <a href="javascript:;" onClick={ handleEdit }>Edit</a>
           <span className="ant-divider" />
-          <a href="#">Delete</a>
+          <Popconfirm title="Are you sure delete this task?" placement="left" onConfirm={ () => { message.error('Click Delete!') } }>
+            <a href="javascript:;">Delete</a>
+          </Popconfirm>
         </span>
       )
     }]
     return (
-      <div style={{backgroundColor: '#FFFFFF'}}>
+      <div style={{backgroundColor: '#FFFFFF', margin: '10px'}}>
         <Grid
           rowSelection={{
             selectedRowKeys: this.state.selectedRowKeys,
@@ -102,10 +111,10 @@ export default class tableDemo extends Base {
           onChange={this.handleTableChange}
           operations={[{
             title: '新增',
-            handleClick: () => { console.log('add') }
+            handleClick: () => { message.success('Click Add!') }
           }, {
             title: '删除',
-            handleClick: () => { console.log('del') }
+            handleClick: () => { message.success('Click Delete!') }
           }]}
           // search={{
           //   placeholder: '请输入名称',

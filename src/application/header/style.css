@@ -64,7 +64,7 @@
 }
 
 /* 弹出层样式 */
-.header-popover {
+.header-user-popover {
   & .ant-popover-arrow {
     &:after {
       border-bottom-color: var(--aside_bgc) !important;
@@ -83,18 +83,20 @@
   }
 }
 
-.ant-popover-inner-content {
-  padding: 0;
-  margin-bottom: 0;
+.header-notice-popover {
+  & .ant-popover-inner-content {
+    padding: 0;
+    margin-bottom: 0;
 
-  & .ant-tabs-bar {
-    border-bottom: 1px solid #e8e8e8;
-  }
+    & .ant-tabs-bar {
+      border-bottom: 1px solid #e8e8e8;
+    }
 
-  & .ant-tabs-content {
-    min-height: 200px;
-    line-height: 200px;
-    text-align: center;
-    font-size: 14px;
+    & .ant-tabs-content {
+      min-height: 200px;
+      line-height: 200px;
+      text-align: center;
+      font-size: 14px;
+    }
   }
 }

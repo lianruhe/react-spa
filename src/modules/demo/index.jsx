@@ -5,13 +5,15 @@ import autobind from 'autobind-decorator'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { setProgress, showProgress, hideProgress } from 'store/actions/core'
-import { Button } from 'antd'
+import { message, Button } from 'antd'
 import QueueAnim from 'rc-queue-anim'
 // import download from 'download'
 // import Grid from 'opiece-react-components/lib/grid'
 import request from 'opiece-utils/lib/request'
 import { APP_RES } from 'utils/config'
 import 'styles/app/demo.css'
+
+const LOC_PATHNAME = location.origin + location.pathname
 
 @connect(state => ({
   progress: state.core.progress
@@ -69,30 +71,50 @@ export default class Demo extends Base {
       interceptors: {
         request: [cancelContentType]
       }
-    }).then(response => { console.log(response) })
+    }).then(response => {
+      message.success('request success!')
+      this.setState({
+        response
+      })
+    }).catch(e => {
+      message.error('request error!')
+      this.setState({
+        response: {
+          error: e
+        }
+      })
+    })
   }
 
   downloadFile (url) {
-    try {
-      const elemIF = document.createElement('iframe')
-      elemIF.src = url
-      elemIF.style.display = 'none'
-      elemIF.onload = () => {
-        console.log('下载文件好像不行～ ～')
-      }
-      elemIF.onloadeddata = () => {
-        console.log('onloadeddata～ ～')
-      }
-      elemIF.ownerDocument.onloadeddata = () => {
-        console.log('onloadeddata～ ～')
-      }
-      elemIF.ownerDocument.onreadystatechange = () => {
-        console.log(1111, elemIF.ownerDocument.readyState)
-      }
-      document.body.appendChild(elemIF)
-    } catch (e) {
-      console.log(e)
-    }
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'README.md'
+
+    const evt = document.createEvent('MouseEvents')
+    evt.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
+    a.dispatchEvent(evt)
+    window.URL.revokeObjectURL(url)
+    // try {
+    //   const elemIF = document.createElement('iframe')
+    //   elemIF.src = url
+    //   elemIF.style.display = 'none'
+    //   elemIF.onload = () => {
+    //     console.log('下载文件好像不行～ ～')
+    //   }
+    //   elemIF.onloadeddata = () => {
+    //     console.log('onloadeddata～ ～')
+    //   }
+    //   elemIF.ownerDocument.onloadeddata = () => {
+    //     console.log('onloadeddata～ ～')
+    //   }
+    //   elemIF.ownerDocument.onreadystatechange = () => {
+    //     console.log(1111, elemIF.ownerDocument.readyState)
+    //   }
+    //   document.body.appendChild(elemIF)
+    // } catch (e) {
+    //   console.log(e)
+    // }
 
     // download(url, 'dist').then(() => {
     //   console.log('done!')
@@ -112,7 +134,7 @@ export default class Demo extends Base {
             <Button className="progress-btn" type="primary" onClick={this.progressDown}>进度条--</Button>
           </div>
           <div className="demo-content">
-            <Button className="progress-btn" type="primary" onClick={this.progressShow}>进度条加载</Button>
+            <Button className="progress-btn" type="primary" onClick={this.progressShow}>模拟加载进度条</Button>
           </div>
         </div>
         <div className="demo-box">
@@ -121,6 +143,9 @@ export default class Demo extends Base {
           </div>
           <div className="demo-content">
             <Button type="primary" onClick={this.handleRequest}>请求</Button>
+            <pre style={{ marginTop: '10px', overflow: 'auto' }}>
+              {JSON.stringify(this.state.response, null, 2)}
+            </pre>
           </div>
         </div>
         <div className="demo-box">
@@ -159,7 +184,7 @@ export default class Demo extends Base {
           </div>
           <div className="demo-content">
             {/* <Button type="primary" onClick={() => this.downloadFile('http://155.16.142.11:100/soft/browser/chrome/AxureRP_for_chorme_0_6_2.crx')}>下载</Button> */}
-            <Button type="primary" onClick={() => this.downloadFile('/static/font/iconfont.woff')}>下载</Button>
+            <Button type="primary" onClick={() => this.downloadFile(`${LOC_PATHNAME}static/README.md`)}>下载</Button>
           </div>
         </div>
       </div>

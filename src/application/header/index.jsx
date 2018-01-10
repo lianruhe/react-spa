@@ -34,7 +34,7 @@ const HeaderComponent = ({ userInfo, logout, collapsed, toggleCollapsed }) => {
       />
       <ul>
         <li className="notice">
-          <Popover placement="bottomRight" content={noticeMenu} trigger="click">
+          <Popover overlayClassName="header-notice-popover" placement="bottomRight" content={noticeMenu} trigger="click">
             <a href="javascript:;">
               <Badge count={6}>
                 <Icon type="bell" />
@@ -43,7 +43,7 @@ const HeaderComponent = ({ userInfo, logout, collapsed, toggleCollapsed }) => {
           </Popover>
         </li>
         <li className="user">
-          <Popover overlayClassName="header-popover" placement="bottomRight" content={userInfoMenu} trigger="hover">
+          <Popover overlayClassName="header-user-popover" placement="bottomRight" content={userInfoMenu} trigger="hover">
             <a href="javascript:;">
               {/* <Avatar className="circle" size="small">
                 <img src="static/images/wx@2x.png" />
