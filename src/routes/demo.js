@@ -1,5 +1,5 @@
 export default [{
-  icon: 'appstore',
+  icon: 'rocket',
   title: 'demo',
   subMenu: [{
     title: '小组件',
