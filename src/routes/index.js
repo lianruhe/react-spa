@@ -16,7 +16,7 @@ export default [{
   to: '/home',
   exact: true // 重定向
 }, {
-  icon: 'appstore',
+  icon: 'home',
   title: '系统菜单',
   subMenu: [{
     title: '首页',
