@@ -7,6 +7,8 @@ import { bindActionCreators } from 'redux'
 import { setProgress, showProgress, hideProgress } from 'store/actions/core'
 import { message, Button } from 'antd'
 import QueueAnim from 'rc-queue-anim'
+// import { SketchPicker } from 'react-color'
+import SketchColor from 'components/shetch-color'
 // import download from 'download'
 // import Grid from 'opiece-react-components/lib/grid'
 import request from 'opiece-utils/lib/request'
@@ -30,6 +32,7 @@ export default class Demo extends Base {
 
   state = {
     show: true,
+    color: '#fff',
     loading: false
   }
 
@@ -121,6 +124,24 @@ export default class Demo extends Base {
     // })
   }
 
+  changePrimaryColor = ({ hex }) => {
+    // this.setState({ color: color.hex })
+    const oldDom = document.getElementById('__primary-color')
+    oldDom && document.head.removeChild(oldDom)
+
+    const styleDom = document.createElement('style')
+    styleDom.id = '__primary-color'
+    const styleStr = `#ui-demo .demo-box .demo-title {
+      background-color: ${hex};
+    }`
+    if (styleDom.styleSheet) {
+      styleDom.styleSheet.cssText = styleStr
+    } else {
+      styleDom.innerHTML = styleStr // 或者写成 nod.appendChild(document.createTextNode(str))
+    }
+    document.head.appendChild(styleDom)
+  }
+
   render () {
     return (
       <div id="ui-demo">
@@ -146,6 +167,14 @@ export default class Demo extends Base {
             <pre style={{ marginTop: '10px', overflow: 'auto' }}>
               {JSON.stringify(this.state.response, null, 2)}
             </pre>
+          </div>
+        </div>
+        <div className="demo-box">
+          <div className="demo-title">
+            选取颜色
+          </div>
+          <div className="demo-content">
+            <SketchColor onChange={this.changePrimaryColor} />
           </div>
         </div>
         <div className="demo-box">
