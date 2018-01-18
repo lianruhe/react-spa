@@ -3,7 +3,9 @@ import pureRender from 'utils/pure-render'
 import PropTypes from 'prop-types'
 
 import { Icon, Layout, Avatar, Badge, Popover, Tabs } from 'antd'
+import SketchColor from 'components/shetch-color'
 // import Avatar from 'components/avatar'
+import changePrimary from 'utils/change-primary'
 
 import './style.css'
 const { Header } = Layout
@@ -25,6 +27,23 @@ const HeaderComponent = ({ userInfo, logout, collapsed, toggleCollapsed }) => {
     </div>
   )
 
+  const changePrimaryColor = ({ rgb }) => {
+    const styleId = '__primary-color__'
+    const oldDom = document.getElementById(styleId)
+    oldDom && document.head.removeChild(oldDom)
+
+    const styleDom = document.createElement('style')
+    styleDom.id = styleId
+    const styleStr = changePrimary(rgb)
+
+    if (styleDom.styleSheet) {
+      styleDom.styleSheet.cssText = styleStr
+    } else {
+      styleDom.innerHTML = styleStr // 或者写成 nod.appendChild(document.createTextNode(str))
+    }
+    document.head.appendChild(styleDom)
+  }
+
   return (
     <Header id="header">
       <Icon
@@ -33,6 +52,14 @@ const HeaderComponent = ({ userInfo, logout, collapsed, toggleCollapsed }) => {
         onClick={toggleCollapsed}
       />
       <ul>
+        <li className="theme">
+          <SketchColor defaultValue={{
+            r: '82',
+            g: '158',
+            b: '242',
+            a: '1'
+          }} onChange={changePrimaryColor} />
+        </li>
         <li className="notice">
           <Popover overlayClassName="header-notice-popover" placement="bottomRight" content={noticeMenu} trigger="click">
             <a href="javascript:;">

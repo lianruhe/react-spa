@@ -13,6 +13,7 @@ import SketchColor from 'components/shetch-color'
 // import Grid from 'opiece-react-components/lib/grid'
 import request from 'opiece-utils/lib/request'
 import { APP_RES } from 'utils/config'
+import changePrimary from 'utils/change-primary'
 import 'styles/app/demo.css'
 
 const LOC_PATHNAME = location.origin + location.pathname
@@ -124,16 +125,25 @@ export default class Demo extends Base {
     // })
   }
 
-  changePrimaryColor = ({ hex }) => {
+  changePrimaryColor = ({ rgb }) => {
+    // const primaryColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${rgb.a})`
+    const styleId = '__primary-color__'
     // this.setState({ color: color.hex })
-    const oldDom = document.getElementById('__primary-color')
+    const oldDom = document.getElementById(styleId)
     oldDom && document.head.removeChild(oldDom)
 
     const styleDom = document.createElement('style')
-    styleDom.id = '__primary-color'
-    const styleStr = `#ui-demo .demo-box .demo-title {
-      background-color: ${hex};
-    }`
+    styleDom.id = styleId
+    const styleStr = changePrimary(rgb)
+    // const styleStr = `
+    //   .ant-btn-primary {
+    //     background-color: ${primaryColor};
+    //     border-color: ${primaryColor};
+    //   }
+    //   #ui-demo .demo-box .demo-title {
+    //     background-color: ${primaryColor};
+    //   }
+    // `
     if (styleDom.styleSheet) {
       styleDom.styleSheet.cssText = styleStr
     } else {

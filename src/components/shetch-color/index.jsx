@@ -4,15 +4,16 @@ import { SketchPicker } from 'react-color'
 
 export default class SketchExample extends React.Component {
   static propTypes = {
+    defaultValue: PropTypes.object,
     onChange: PropTypes.func
   }
 
   state = {
     displayColorPicker: false,
-    color: {
-      r: '241',
-      g: '112',
-      b: '19',
+    color: this.props.defaultValue || {
+      r: '82',
+      g: '158',
+      b: '242',
       a: '1'
     }
   }
@@ -40,16 +41,16 @@ export default class SketchExample extends React.Component {
         background: `rgba(${this.state.color.r}, ${this.state.color.g}, ${this.state.color.b}, ${this.state.color.a})`
       },
       swatch: {
-        padding: '5px',
+        padding: '4px',
         background: '#fff',
-        borderRadius: '1px',
+        borderRadius: '4px',
         boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
         display: 'inline-block',
         cursor: 'pointer'
       },
       popover: {
         position: 'absolute',
-        zIndex: '2'
+        zIndex: '1001'
       },
       cover: {
         position: 'fixed',
